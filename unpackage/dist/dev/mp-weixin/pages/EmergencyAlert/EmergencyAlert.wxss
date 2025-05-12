@@ -1,0 +1,165 @@
+
+/* 全屏警报容器 */
+.emergency-alert-screen.data-v-838185bf {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: pulseBackground-838185bf 0.8s infinite;
+}
+
+/* 动态背景效果 */
+.alert-background.data-v-838185bf {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.seismic-wave.data-v-838185bf {
+  position: absolute;
+  bottom: -50%;
+  left: 50%;
+  width: 200vmax;
+  height: 200vmax;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 45%;
+  transform: translate(-50%, 0) rotate(0deg);
+  animation: wave-838185bf 2s infinite linear;
+}
+.delay-1.data-v-838185bf {
+  animation-delay: 1s;
+  opacity: 0.5;
+}
+
+/* 核心内容样式 */
+.alert-content.data-v-838185bf {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* 倒计时样式 */
+.countdown-timer.data-v-838185bf {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  font-family: monospace;
+  animation: 
+      textPulse 0.5s infinite alternate,textShake-838185bf 0.3s infinite;
+}
+@keyframes textShake-838185bf {
+0%, 100% { transform: translateX(0) rotate(0);
+}
+25% { transform: translateX(-3px) rotate(-0.5deg);
+}
+75% { transform: translateX(3px) rotate(0.5deg);
+}
+}
+.countdown-progress.data-v-838185bf {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-bar.data-v-838185bf {
+  height: 100%;
+  background: #f39c12;
+  transition: width 1s linear;
+}
+
+/* 地震信息 */
+.earthquake-info.data-v-838185bf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.info-item.data-v-838185bf {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+}
+.magnitude.data-v-838185bf {
+  color: #f39c12;
+  font-size: 1.5em;
+}
+
+/* 操作按钮 */
+.alert-actions.data-v-838185bf {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.alert-content.data-v-838185bf {
+  position: relative;
+  overflow: hidden;
+}
+.alert-content.data-v-838185bf::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #f39c12;
+  border-radius: 12px;
+  animation: borderAlert 0.6s infinite;
+  pointer-events: none;
+}
+.action-btn.data-v-838185bf {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 0,x, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.action-btn.data-v-838185bf:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* 动画定义 */
+@keyframes pulseBackground-838185bf {
+0% { opacity: 0.95;
+}
+50% { opacity: 1;
+}
+100% { opacity: 0.95;
+}
+}
+@keyframes wave-838185bf {
+from { transform: translate(-50%, 0) rotate(0deg);
+}
+to { transform: translate(-50%, -80%) rotate(720deg);
+}
+}
+
+/* 无障碍优化 */
+.action-btn.data-v-838185bf:focus {
+  outline: 2px solid #f39c12;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.seismic-wave.data-v-838185bf {
+    animation: none;
+}
+.emergency-alert-screen.data-v-838185bf {
+    animation: none;
+}
+}

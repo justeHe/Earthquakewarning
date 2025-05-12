@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/Header/Header",
+    "pages/EmergencyAlert/EmergencyAlert",
+    "pages/TabBar/TabBar",
+    "pages/AlertTab/AlertTab",
+    "pages/HistoryTab/HistoryTab",
+    "pages/GuideTab/GuideTab",
+    "pages/SettingsTab/SettingsTab"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "测试"
+    }
+  },
+  "usingComponents": {}
+}

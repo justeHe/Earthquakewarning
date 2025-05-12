@@ -1,0 +1,1 @@
+{"version":3,"file":"GuideTab.js","sources":["pages/GuideTab/GuideTab.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/hedong/Documents/HBuilderProjects/地震预警/pages/GuideTab/GuideTab.vue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;AACA,GAAG,WAAWA,SAAe,eAAA;"}

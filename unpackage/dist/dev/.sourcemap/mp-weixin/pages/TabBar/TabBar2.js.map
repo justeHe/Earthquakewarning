@@ -1,0 +1,1 @@
+{"version":3,"file":"TabBar2.js","sources":["/Users/hedong/Documents/HBuilderProjects/地震预警/pages/TabBar/TabBar.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/hedong/Documents/HBuilderProjects/地震预警/pages/TabBar/TabBar.vue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;AACA,GAAG,WAAWA,OAAe,eAAA;"}

@@ -1,0 +1,81 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"window": {
+		    "navigationBarTitleText": "地震预警"
+		  },
+		  "requiredPrivateInfos": [
+		    "getLocation",
+		    "onLocationChange",
+		    "chooseLocation"
+		  ],
+		  "permission": {
+		    "scope.userLocation": {
+		      "desc": "您的位置信息将用于显示当前位置"
+		    }
+		  }
+	},
+	{
+		"path" : "pages/Header/Header",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/EmergencyAlert/EmergencyAlert",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		},
+		"requiredPrivateInfos": [
+		  "getLocation",
+		  "onLocationChange",
+		  "chooseLocation"
+		]
+	},
+	{
+		"path" : "pages/TabBar/TabBar",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/AlertTab/AlertTab",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/HistoryTab/HistoryTab",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/GuideTab/GuideTab",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/SettingsTab/SettingsTab",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	}
+}

@@ -1,0 +1,117 @@
+
+/* 主要背景颜色调整 */
+.settings-tab[data-v-9bc93f33] {
+  background-color: #f4f5f7;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* 每一项的样式 */
+.setting-item[data-v-9bc93f33] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* 悬浮效果 */
+.setting-item[data-v-9bc93f33]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 左侧图标和名称 */
+.setting-left[data-v-9bc93f33] {
+  display: flex;
+  align-items: center;
+}
+
+/* 图标样式 */
+.setting-icon[data-v-9bc93f33] {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #e3e4e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  color: #4a90e2;
+  font-size: 1rem;
+}
+
+/* 文字样式 */
+.setting-name[data-v-9bc93f33] {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* 文字值样式 */
+.setting-value[data-v-9bc93f33] {
+  font-size: 0.9rem;
+  color: #4a90e2;
+  font-weight: bold;
+}
+
+/* 开关按钮 */
+.switch[data-v-9bc93f33] {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+/* 隐藏原始 input */
+.switch uni-input[data-v-9bc93f33] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* 滑动条样式 */
+.slider[data-v-9bc93f33] {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* 开关圆点 */
+.slider[data-v-9bc93f33]:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* 选中状态 */
+uni-input:checked + .slider[data-v-9bc93f33] {
+  background-color: #4a90e2;
+}
+
+/* 选中状态的滑块动画 */
+uni-input:checked + .slider[data-v-9bc93f33]:before {
+  transform: translateX(24px);
+  background-color: #ffffff;
+}
+
+/* 增加开关的阴影效果 */
+.slider[data-v-9bc93f33]:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

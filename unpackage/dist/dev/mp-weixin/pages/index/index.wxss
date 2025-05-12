@@ -1,0 +1,38 @@
+
+.data-v-1cf27b2a:root {
+  --primary-color: #e74c3c;
+  --secondary-color: #3498db;
+  --dark-color: #2c3e50;
+  --light-color: #f7f9fc;
+  --warning-color: #f39c12;
+  --safe-color: #27ae60;
+}
+
+/* 背景渐变，使界面更有层次感 */
+.container.data-v-1cf27b2a {
+  max-width: 430px;
+  margin: 0 auto;
+  background: linear-gradient(to bottom, var(--light-color), #ffffff);
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding-bottom: 60px; /* 为底部标签栏留出空间 */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 卡片式主内容区域 */
+.content.data-v-1cf27b2a {
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* 增强 hover 效果 */
+.content.data-v-1cf27b2a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}

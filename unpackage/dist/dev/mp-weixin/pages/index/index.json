@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "header": "../Header/Header",
+    "emergency-alert": "../EmergencyAlert/EmergencyAlert",
+    "tab-bar": "../TabBar/TabBar",
+    "alert-tab": "../AlertTab/AlertTab",
+    "history-tab": "../HistoryTab/HistoryTab",
+    "guide-tab": "../GuideTab/GuideTab",
+    "settings-tab": "../SettingsTab/SettingsTab"
+  }
+}

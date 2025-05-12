@@ -1,0 +1,1 @@
+{"version":3,"file":"SettingsTab2.js","sources":["/Users/hedong/Documents/HBuilderProjects/地震预警/pages/SettingsTab/SettingsTab.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/hedong/Documents/HBuilderProjects/地震预警/pages/SettingsTab/SettingsTab.vue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;AACA,GAAG,WAAWA,YAAe,eAAA;"}

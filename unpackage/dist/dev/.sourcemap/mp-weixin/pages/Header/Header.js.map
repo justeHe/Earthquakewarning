@@ -1,0 +1,1 @@
+{"version":3,"file":"Header.js","sources":["pages/Header/Header.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/hedong/Documents/HBuilderProjects/地震预警/pages/Header/Header.vue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;AACA,GAAG,WAAWA,OAAe,eAAA;"}
