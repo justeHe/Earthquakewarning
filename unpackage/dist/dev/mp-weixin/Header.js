@@ -51,7 +51,7 @@ const _sfc_main = {
     // 定位核心方法
     async locateMe() {
       common_vendor.index.navigateTo({
-        url: "/pages/EmergencyAlert/EmergencyAlert",
+        url: "/pages/Disaster-Report/Disaster-Report",
         success: () => {
           common_vendor.index.__f__("log", "at pages/Header/Header.vue:104", "跳转成功");
         },

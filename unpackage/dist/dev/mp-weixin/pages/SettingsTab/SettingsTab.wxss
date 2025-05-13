@@ -36,13 +36,15 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background-color: #e3e4e8;
+  background-color: #D6E7FF;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 15px;
-  color: #4a90e2;
-  font-size: 1rem;
+}
+.icon-image.data-v-9bc93f33 {
+  width: 20px;
+  height: 20px;
 }
 
 /* 文字样式 */
@@ -115,3 +117,8 @@ input:checked + .slider.data-v-9bc93f33:before {
 .slider.data-v-9bc93f33:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+.icon-svg.data-v-9bc93f33 {
+  width: 20px;
+  height: 20px;
+}
+

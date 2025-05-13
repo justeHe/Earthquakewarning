@@ -80,7 +80,8 @@
             "scope.userLocation" : {
                 "desc" : "测试"
             }
-        }
+        },
+		"requiredPrivateInfos": ["chooseAddress", "chooseLocation", "choosePoi", "getLocation"]
     },
     "vueVersion" : "3",
     "h5" : {

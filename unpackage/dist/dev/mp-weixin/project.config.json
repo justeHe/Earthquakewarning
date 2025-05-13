@@ -18,7 +18,7 @@
         }
     },
     "compileType": "miniprogram",
-    "libVersion": "3.7.12",
+    "libVersion": "3.8.3",
     "appid": "wx4f3599d8cc8bcc13",
     "projectname": "地震预警",
     "condition": {},

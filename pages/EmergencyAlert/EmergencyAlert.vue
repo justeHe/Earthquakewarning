@@ -34,10 +34,12 @@
         <div class="earthquake-info">
           <div class="info-item">
             <span class="label">震级</span>
+			<br>
             <span class="value magnitude">{{ magnitude }}</span>
           </div>
           <div class="info-item">
             <span class="label">深度</span>
+			<br>
             <span class="value">{{ depth }} km</span>
           </div>
           <div class="info-item">
@@ -55,6 +57,7 @@
           :aria-label="isMuted ? '取消静音' : '静音警报'"
         >
           <i :class="['icon', isMuted ? 'icon-volume-off' : 'icon-volume-up']"></i>
+          <span class="btn-text">{{ isMuted ? '取消静音' : '静音' }}</span>
         </button>
         <button 
           class="action-btn guide-btn"
@@ -62,6 +65,7 @@
           aria-label="应急指南"
         >
           <i class="icon icon-guide"></i>
+          <span class="btn-text">应急指南</span>
         </button>
         <button 
           class="action-btn close-btn"
@@ -69,6 +73,7 @@
           aria-label="关闭警报"
         >
           <i class="icon icon-close"></i>
+          <span class="btn-text">关闭</span>
         </button>
       </div>
     </div>
@@ -80,9 +85,9 @@ import { ref, computed, onMounted } from 'vue'
 
 const props = defineProps({
   duration: { type: Number, default: 20 }, // 倒计时总时长
-  magnitude: { type: Number, required: true }, // 震级
-  depth: { type: Number, required: true }, // 深度
-  epicenter: { type: String, required: true } // 震中
+  magnitude: { type: Number, default: 4.0 }, // 震级
+  depth: { type: Number, default: 10 }, // 深度
+  epicenter: { type: String, default:"四川省成都市" } // 震中
 })
 
 const emit = defineEmits(['close', 'mute', 'unmute', 'show-guide'])
@@ -299,6 +304,53 @@ onMounted(() => {
   
   .emergency-alert-screen {
     animation: none;
+  }
+}
+
+.alert-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  width: auto;
+  height: 48px;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* 针对小屏幕的响应式调整 */
+@media (max-width: 480px) {
+  .alert-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .action-btn {
+    width: 80%;
+    justify-content: center;
   }
 }
 </style>

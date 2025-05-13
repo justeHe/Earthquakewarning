@@ -30,10 +30,7 @@
         style="width:100%;height:300px;"
         @tap="handleMapTap"
       ></map>
-      <button @tap="openAmap" class="amap-button" v-if="canOpenAmap">
-        <image src="/static/amap-logo.png" mode="aspectFit" class="amap-logo"></image>
-        在高德地图中查看
-      </button>
+	  
     </view>
     
     <!-- 地震信息 -->
@@ -51,24 +48,35 @@
         <i class="fas fa-exclamation-triangle warning-icon"></i>
         <div>{{ quake.warning }}</div>
       </div>
+	  <div class="quake-coords"> <!-- 新增坐标显示 -->
+	        经纬度: {{ quake.latitude.toFixed(4) }}, {{ quake.longitude.toFixed(4) }}
+	    </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import AMapWX from "../../lib/amap-wx.130.js"
+const amapFile = require('./lib/amap-wx.130.js')
+
 
 // 公共状态
 const alertStatus = ref('safe')
+const mapKey = '3ceccd136aabe918552f561c13f20691'
 const alertIcon = ref('fas fa-check-circle')
 const alertTitle = ref('当前安全')
 const alertMessage = ref('您所在区域当前无地震威胁')
 const location = ref('正在获取位置...')
 const isRefreshing = ref(false)
+
 const quakes = ref([
-  { id: 1, magnitude: 'M4.2', time: '2023-05-15 08:23', distance: '85km', depth: '10km', warning: '不会对您所在区域造成明显影响' },
-  { id: 2, magnitude: 'M5.8', time: '2023-05-12 14:37', distance: '120km', depth: '15km', warning: '部分地区有震感' }
+  { id: 1, magnitude: 'M4.2', time: '2023-05-15 08:23', distance: '85km', depth: '10km', warning: '不会对您所在区域造成明显影响',latitude: 40,
+    longitude: 117},
+  { id: 2, magnitude: 'M5.8', time: '2023-05-12 14:37', distance: '120km', depth: '15km', warning: '部分地区有震感', latitude: 39.9040,
+    longitude: 116.4071 }
 ])
+
 
 
 // 小程序地图相关
@@ -79,66 +87,49 @@ const markers = ref([{
   width: 30,
   height: 30
 }])
-const canOpenAmap = ref(false)
 
-// 检查是否安装高德地图
-function checkAmapInstalled() {
-  wx.getSetting({
-    success(res) {
-      canOpenAmap.value = res.authSetting['scope.werun'] || false
-    }
-  })
+function processRegeoData(data) {
+  const regeocodeData = data.regeocodeData || {};
+  return {
+    name: data[0].name || "无",
+    desc: data[0].desc || "无",
+    longitude: parseFloat(data[0].longitude) || 0,
+    latitude: parseFloat(data[0].latitude) || 0
+  };
 }
 
-// 使用高德API获取位置
-function getAmapLocation() {
-  wx.request({
-    url: 'https://restapi.amap.com/v3/ip',
-    data: {
-      key: '3ceccd136aabe918552f561c13f20691',
-      output: 'JSON'
-    },
-    success: (res) => {
-      if (res.data.status === '1') {
-        const { rectangle } = res.data
-        const coords = rectangle.split(';')[0].split(',')
-        longitude.value = parseFloat(coords[0])
-        latitude.value = parseFloat(coords[1])
-        updateAmapMarker()
-        getAmapAddress(longitude.value, latitude.value)
-      } else {
-        getWxLocationAsFallback()
-      }
-    },
-    fail: () => {
-      getWxLocationAsFallback()
+const getAddress = async () => {
+  const myAmapFun = new amapFile.AMapWX({ key: mapKey });
+  
+  try {
+    const [err, data] = await new Promise(resolve => {
+      myAmapFun.getRegeo({
+        success: res => resolve([null, res]),
+        fail: err => resolve([err, null])
+      });
+    });
+
+    if (err) {
+      throw new Error(err.errMsg || '逆地理编码请求失败');
     }
-  })
-}
-       
-function getAmapAddress(lng, lat) {
-  wx.request({
-    url: 'https://restapi.amap.com/v3/geocode/regeo',
-    data: {
-      key: '3ceccd136aabe918552f561c13f20691',
-      location: `${lng},${lat}`,
-      radius: 1000,
-      extensions: 'base',
-      output: 'JSON'
-    },
-    success: (res) => {
-      if (res.data.status === '1') {
-        location.value = res.data.regeocode.formatted_address || 
-                       `${lat.toFixed(4)}, ${lng.toFixed(4)}`
-      } else {
-        location.value = `${lat.toFixed(4)}, ${lng.toFixed(4)}`
-      }
-    },
-    fail: () => {
-      location.value = `${lat.toFixed(4)}, ${lng.toFixed(4)}`
+
+    if (!data || typeof data !== 'object') {
+      throw new Error('无效的逆地理编码响应格式');
     }
-  })
-}
+
+    const processedData = processRegeoData(data);
+
+    
+    console.log('处理后的结构化数据:', processedData);
+    return processedData;
+    
+  } catch (err) {
+    console.error('地址解析错误:', err.message);
+    throw err; // 向上传递错误或在此处理
+  }
+};
+
+
 
 // 更新地图标记
 function updateAmapMarker() {
@@ -157,7 +148,22 @@ function updateAmapMarker() {
       borderRadius: 4,
       display: 'ALWAYS'
     }
-  }]
+  },
+  ...quakes.value.map(quake => ({
+      id: quake.id+1,
+      latitude: quake.latitude,
+      longitude: quake.longitude,
+      width: 30,
+      height: 30,
+      callout: {
+        content: `${quake.magnitude} ${quake.distance}\n${quake.warning}`,
+        color: '#ffffff',
+        bgColor: '#ff4d4f',
+        padding: 5,
+        borderRadius: 4,
+        display: 'ALWAYS'
+      }
+    }))]
 }
 
 // 微信定位作为备用
@@ -165,32 +171,21 @@ function getWxLocationAsFallback() {
   wx.getLocation({
     type: 'gcj02',
     success: (res) => {
+		console.log(res)
       longitude.value = res.longitude
       latitude.value = res.latitude
       updateAmapMarker()
-      getAmapAddress(res.longitude, res.latitude)
+      getAddress()
+        .then(data => location.value = data.name)
+        .catch(err => console.error('操作失败:', err.message))
     }
   })
 }
 
-// 打开高德地图
-function openAmap() {
-  wx.navigateToMiniProgram({
-    appId: 'wx9f4d9a2e9b9d9b9d', // 高德地图小程序appid
-    path: `pages/map/map?location=${latitude.value},${longitude.value}&name=我的位置`,
-    success: () => console.log('跳转成功'),
-    fail: (err) => console.error('跳转失败:', err)
-  })
-}
-
-function handleMapTap(e) {
-  console.log('地图点击:', e)
-}
 
 
 onMounted(() => {
-  
-  getAmapLocation()
+  getWxLocationAsFallback()
 })
 </script>
 

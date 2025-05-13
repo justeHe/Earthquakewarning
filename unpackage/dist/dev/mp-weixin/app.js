@@ -10,6 +10,10 @@ if (!Math) {
   "./pages/HistoryTab/HistoryTab.js";
   "./pages/GuideTab/GuideTab.js";
   "./pages/SettingsTab/SettingsTab.js";
+  "./pages/test/test.js";
+  "./pages/Visualization/Visualization.js";
+  "./pages/Emergenciecenter/Emergenciecenter.js";
+  "./pages/Disaster-Report/Disaster-Report.js";
 }
 const _sfc_main = {
   onLaunch: function() {

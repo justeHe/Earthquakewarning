@@ -1,0 +1,359 @@
+/* 水平间距 */
+/* 水平间距 */
+/* 设计系统变量 */
+.report-page.data-v-066c48c3 {
+  padding-bottom: 160rpx;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* 地图模块 */
+.map-section.data-v-066c48c3 {
+  margin: 32rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.08);
+}
+.map-section .map-toolbar.data-v-066c48c3 {
+  position: absolute;
+  bottom: 24rpx;
+  right: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+.map-section .map-toolbar .map-btn.data-v-066c48c3 {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 40rpx;
+  padding: 12rpx 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #2c3e50;
+}
+.map-section .map-toolbar .map-btn .btn-icon.data-v-066c48c3 {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  transition: transform 0.2s ease;
+}
+.map-section .map-toolbar .map-btn.data-v-066c48c3:active {
+  transform: scale(0.98);
+}
+.map-section .map-toolbar .map-btn:active .btn-icon.data-v-066c48c3 {
+  transform: scale(0.95);
+}
+
+/* 数据看板 */
+.dashboard.data-v-066c48c3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240rpx, 1fr));
+  gap: 24rpx;
+  padding: 0 32rpx;
+}
+.dashboard .stats-card.data-v-066c48c3 {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dashboard .stats-card .card-glow.data-v-066c48c3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8rpx;
+  background: linear-gradient(90deg, #e74c3c 0%, #e67e22 100%);
+}
+.dashboard .stats-card .stat-icon.data-v-066c48c3 {
+  width: 40rpx;
+  height: 40rpx;
+  margin-bottom: 24rpx;
+  transition: transform 0.2s ease;
+}
+.dashboard .stats-card .value.data-v-066c48c3 {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.2;
+}
+.dashboard .stats-card .label.data-v-066c48c3 {
+  font-size: 26rpx;
+  color: #7f8c8d;
+}
+.dashboard .stats-card.data-v-066c48c3:active {
+  transform: scale(0.98);
+}
+.dashboard .stats-card:active .stat-icon.data-v-066c48c3 {
+  transform: scale(0.9);
+}
+
+/* 照片模块 */
+.photo-section.data-v-066c48c3 {
+  margin-top: 48rpx;
+}
+.photo-section .section-header.data-v-066c48c3 {
+  padding: 0 32rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.photo-section .section-header .badge.data-v-066c48c3 {
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 8rpx;
+  padding: 8rpx 16rpx;
+}
+.photo-section .section-header .badge .badge-text.data-v-066c48c3 {
+  color: #e74c3c;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+.photo-section .photo-scroll.data-v-066c48c3 {
+  padding: 0 32rpx;
+}
+.photo-section .photo-scroll .photo-item.data-v-066c48c3 {
+  width: 320rpx;
+  margin-right: 24rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  position: relative;
+}
+.photo-section .photo-scroll .photo-item .photo-image.data-v-066c48c3 {
+  width: 100%;
+  height: 240rpx;
+  transition: transform 0.3s ease;
+}
+.photo-section .photo-scroll .photo-item .photo-overlay.data-v-066c48c3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+}
+.photo-section .photo-scroll .photo-item .photo-overlay .location-icon.data-v-066c48c3 {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+}
+.photo-section .photo-scroll .photo-item .photo-overlay .photo-caption.data-v-066c48c3 {
+  color: #fff;
+  font-size: 26rpx;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+.photo-section .photo-scroll .photo-item:active .photo-image.data-v-066c48c3 {
+  transform: scale(1.02);
+}
+
+/* 时间线模块 */
+.timeline-section.data-v-066c48c3 {
+  margin-top: 48rpx;
+}
+.timeline-section .timeline.data-v-066c48c3 {
+  padding: 0 32rpx;
+}
+.timeline-section .timeline-item.data-v-066c48c3 {
+  position: relative;
+  padding-left: 48rpx;
+  margin-bottom: 48rpx;
+}
+.timeline-section .timeline-item.data-v-066c48c3::before {
+  content: "";
+  position: absolute;
+  left: -2rpx;
+  top: 0;
+  bottom: 0;
+  width: 4rpx;
+  background: #eee;
+}
+.timeline-section .timeline-item .timeline-marker.data-v-066c48c3 {
+  position: absolute;
+  left: -16rpx;
+  top: 0;
+  width: 32rpx;
+  height: 32rpx;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+.timeline-section .timeline-item .timeline-marker.data-v-066c48c3::before {
+  content: "";
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  background: #e74c3c;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.timeline-section .timeline-item .timeline-marker .pulse.data-v-066c48c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(231, 76, 60, 0.2);
+  animation: pulse-066c48c3 1.5s infinite;
+}
+.timeline-section .timeline-item .timeline-content.data-v-066c48c3 {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+.timeline-section .timeline-item .timeline-content .date.data-v-066c48c3 {
+  color: #e74c3c;
+  font-size: 26rpx;
+  margin-bottom: 8rpx;
+}
+.timeline-section .timeline-item .timeline-content .title.data-v-066c48c3 {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+.timeline-section .timeline-item .timeline-content .description.data-v-066c48c3 {
+  color: #666;
+  font-size: 28rpx;
+  line-height: 1.4;
+}
+.timeline-section .timeline-item .timeline-content .timeline-images.data-v-066c48c3 {
+  margin-top: 16rpx;
+}
+.timeline-section .timeline-item .timeline-content .timeline-images .timeline-image.data-v-066c48c3 {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+}
+
+/* 悬浮按钮 */
+.submit-fab.data-v-066c48c3 {
+  position: fixed;
+  right: 48rpx;
+  bottom: 96rpx;
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background: #e74c3c;
+  box-shadow: 0 12rpx 32rpx rgba(231, 76, 60, 0.3);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.submit-fab .fab-icon.data-v-066c48c3 {
+  width: 56rpx;
+  height: 56rpx;
+  transition: transform 0.2s ease;
+}
+.submit-fab .fab-icon.data-v-066c48c3 {
+  transition: transform 0.2s ease;
+}
+
+/* 表单弹窗 */
+.submission-form.data-v-066c48c3 {
+  background: #fff;
+  padding: 48rpx;
+  border-radius: 24rpx 24rpx 0 0;
+}
+.submission-form .report-input.data-v-066c48c3 {
+  height: 240rpx;
+  width: 100%;
+  padding: 24rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+.submission-form .form-controls.data-v-066c48c3 {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 32rpx;
+}
+.submission-form .form-controls button.data-v-066c48c3 {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+}
+.submission-form .form-controls button .button-icon.data-v-066c48c3 {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  vertical-align: -4rpx;
+}
+.submission-form .form-controls button.photo-button.data-v-066c48c3 {
+  background: #f8f9fa;
+  color: #7f8c8d;
+}
+.submission-form .form-controls button.submit-button.data-v-066c48c3 {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* 动画 */
+@keyframes pulse-066c48c3 {
+0% {
+    transform: scale(0.8);
+    opacity: 1;
+}
+100% {
+    transform: scale(1.5);
+    opacity: 0;
+}
+}
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+.report-page.data-v-066c48c3 {
+    background: #1a1a1a;
+}
+.report-page .stats-card.data-v-066c48c3,
+.report-page .timeline-content.data-v-066c48c3 {
+    background: #2d2d2d;
+}
+.report-page .value.data-v-066c48c3 {
+    color: #fff !important;
+}
+.report-page .label.data-v-066c48c3,
+.report-page .description.data-v-066c48c3 {
+    color: #b3b3b3 !important;
+}
+.report-page .btn-icon.data-v-066c48c3,
+.report-page .stat-icon.data-v-066c48c3,
+.report-page .fab-icon.data-v-066c48c3 {
+    filter: invert(1) brightness(1.2);
+}
+.report-page .location-icon.data-v-066c48c3 {
+    filter: invert(1);
+}
+.report-page .report-input.data-v-066c48c3 {
+    background: #262626;
+    color: #fff;
+}
+}
+/* 响应式调整 */
+@media (max-width: 480px) {
+.map-toolbar .btn-icon.data-v-066c48c3 {
+    width: 28rpx;
+    height: 28rpx;
+}
+.stats-card .stat-icon.data-v-066c48c3 {
+    width: 36rpx;
+    height: 36rpx;
+}
+.submit-fab .fab-icon.data-v-066c48c3 {
+    width: 48rpx;
+    height: 48rpx;
+}
+.photo-item.data-v-066c48c3 {
+    width: 280rpx !important;
+}
+.photo-item .photo-image.data-v-066c48c3 {
+    height: 200rpx !important;
+}
+}

@@ -5,11 +5,11 @@ const _sfc_main = {
   props: {
     duration: { type: Number, default: 20 },
     // 倒计时总时长
-    magnitude: { type: Number, required: true },
+    magnitude: { type: Number, default: 4 },
     // 震级
-    depth: { type: Number, required: true },
+    depth: { type: Number, default: 10 },
     // 深度
-    epicenter: { type: String, required: true }
+    epicenter: { type: String, default: "四川省成都市" }
     // 震中
   },
   emits: ["close", "mute", "unmute", "show-guide"],
@@ -52,11 +52,12 @@ const _sfc_main = {
         d: common_vendor.t(__props.depth),
         e: common_vendor.t(__props.epicenter),
         f: common_vendor.n(isMuted.value ? "icon-volume-off" : "icon-volume-up"),
-        g: common_vendor.o(toggleMute),
-        h: isMuted.value ? "取消静音" : "静音警报",
-        i: common_vendor.o(showGuide),
-        j: common_vendor.o(($event) => _ctx.$emit("close")),
-        k: common_vendor.o(($event) => _ctx.$emit("close"))
+        g: common_vendor.t(isMuted.value ? "取消静音" : "静音"),
+        h: common_vendor.o(toggleMute),
+        i: isMuted.value ? "取消静音" : "静音警报",
+        j: common_vendor.o(showGuide),
+        k: common_vendor.o(($event) => _ctx.$emit("close")),
+        l: common_vendor.o(($event) => _ctx.$emit("close"))
       };
     };
   }

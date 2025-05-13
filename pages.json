@@ -68,6 +68,41 @@
 		{
 			"navigationBarTitleText" : ""
 		}
+	},
+	{
+		"path" : "pages/test/test",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "Visualization/Visualization",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/Visualization/Visualization",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/Emergenciecenter/Emergenciecenter",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path" : "pages/Disaster-Report/Disaster-Report",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

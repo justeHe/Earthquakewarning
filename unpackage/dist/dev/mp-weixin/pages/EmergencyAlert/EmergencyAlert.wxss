@@ -163,3 +163,45 @@ to { transform: translate(-50%, -80%) rotate(720deg);
     animation: none;
 }
 }
+.alert-actions.data-v-838185bf {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.action-btn.data-v-838185bf {
+  width: auto;
+  height: 48px;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-text.data-v-838185bf {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.action-btn.data-v-838185bf:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* 针对小屏幕的响应式调整 */
+@media (max-width: 480px) {
+.alert-actions.data-v-838185bf {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+.action-btn.data-v-838185bf {
+    width: 80%;
+    justify-content: center;
+}
+}

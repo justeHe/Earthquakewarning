@@ -3,7 +3,8 @@
     <div class="setting-item" v-for="setting in settings" :key="setting.id">
       <div class="setting-left">
         <div class="setting-icon">
-          <i :class="setting.icon"></i>
+          <!-- 使用小程序图标组件或图片 -->
+          <image :src="setting.icon" class="icon-svg" mode="aspectFit" />
         </div>
         <div class="setting-name">{{ setting.name }}</div>
       </div>
@@ -23,14 +24,27 @@
 <script setup>
 import { reactive } from 'vue'
 
+// 假设这些是小程序中的图片路径
+const iconPaths = {
+  bell: '/static/icons/bell.svg',
+  volume: '/static/icons/volume.svg',
+  vibrate: '/static/icons/shake.svg',
+  broadcast: '/static/icons/level.svg',
+  location: '/static/icons/location.svg',
+  moon: '/static/icons/moon.svg',
+  refresh: '/static/icons/refresh.svg',
+  language: '/static/icons/language.svg'
+}
+
 const settings = reactive([
-  { id: 1, name: '预警通知', icon: 'fas fa-bell', type: 'toggle', value: true },
-  { id: 2, name: '警报声音', icon: 'fas fa-volume-up', type: 'toggle', value: true },
-  { id: 3, name: '振动提醒', icon: 'fas fa-vibrate', type: 'toggle', value: true },
-  { id: 4, name: '预警阈值', icon: 'fas fa-broadcast-tower', type: 'text', value: '4.0级及以上' },
-  { id: 5, name: '定位精度', icon: 'fas fa-map-marked-alt', type: 'text', value: '高精度' },
-  { id: 6, name: '夜间模式', icon: 'fas fa-moon', type: 'toggle', value: false },
-  { id: 7, name: '数据刷新频率', icon: 'fas fa-history', type: 'text', value: '自动' }
+  { id: 1, name: '预警通知', icon: iconPaths.bell, type: 'toggle', value: true },
+  { id: 2, name: '警报声音', icon: iconPaths.volume, type: 'toggle', value: true },
+  { id: 3, name: '振动提醒', icon: iconPaths.vibrate, type: 'toggle', value: true },
+  { id: 4, name: '预警阈值', icon: iconPaths.broadcast, type: 'text', value: '4.0级及以上' },
+  { id: 5, name: '定位精度', icon: iconPaths.location, type: 'text', value: '高精度' },
+  { id: 6, name: '夜间模式', icon: iconPaths.moon, type: 'toggle', value: false },
+  { id: 7, name: '数据刷新频率', icon: iconPaths.refresh, type: 'text', value: '自动' },
+  { id: 9, name: '语言', icon: iconPaths.language, type: 'text', value: '中文' }
 ])
 
 function onToggle(setting) {
@@ -76,13 +90,16 @@ function onToggle(setting) {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background-color: #e3e4e8;
+  background-color: #D6E7FF;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 15px;
-  color: #4a90e2;
-  font-size: 1rem;
+}
+
+.icon-image {
+  width: 20px;
+  height: 20px;
 }
 
 /* 文字样式 */
@@ -155,4 +172,9 @@ input:checked + .slider:before {
 .slider:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+.icon-svg {
+  width: 20px;
+  height: 20px;
+}
+
 </style>

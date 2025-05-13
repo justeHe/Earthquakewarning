@@ -1,5 +1,12 @@
 <template>
   <div class="guide-tab">
+	   <view 
+	        class="emergency-float-btn"
+	        @click="navigateToEmergency"
+	      >
+	        <uni-icons type="alert" size="24" color="#fff" />
+	        <text class="btn-text">应急中心</text>
+	      </view>
     <div class="guide-category" v-for="category in guideCategories" :key="category.id">
       <h3 class="guide-title">
         <i :class="category.icon"></i>{{ category.title }}
@@ -16,6 +23,12 @@
 
 <script setup>
 import { ref } from 'vue'
+
+const navigateToEmergency = () => {
+  uni.navigateTo({
+    url: '/pages/Emergenciecenter/Emergenciecenter'
+  })
+}
 
 const guideCategories = ref([
   {

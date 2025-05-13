@@ -1,0 +1,1 @@
+{"version":3,"file":"test.js","sources":["pages/test/test.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/hedong/Documents/HBuilderProjects/Earthquakewarning/pages/test/test.vue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;;;;;;;;;;;;;;;;;;AACA,GAAG,WAAWA,SAAe;"}

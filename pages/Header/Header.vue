@@ -99,7 +99,7 @@ export default {
       //   this.locating = false
       // }
 	  uni.navigateTo({
-	          url: '/pages/EmergencyAlert/EmergencyAlert',
+	          url: '/pages/Disaster-Report/Disaster-Report',
 	          success: () => {
 	            console.log('跳转成功');
 	          },

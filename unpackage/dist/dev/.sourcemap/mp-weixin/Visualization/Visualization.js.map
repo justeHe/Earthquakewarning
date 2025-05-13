@@ -1,0 +1,1 @@
+{"version":3,"file":"Visualization.js","sources":["Visualization/Visualization.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/hedong/Documents/HBuilderProjects/Earthquakewarning/Visualization/Visualization.vue'\nwx.createPage(MiniProgramPage)"],"names":[],"mappings":";;;;;;;AACA,GAAG,WAAW,eAAe;"}
