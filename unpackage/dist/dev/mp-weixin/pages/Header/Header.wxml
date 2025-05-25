@@ -1,1 +1,1 @@
-<view><button bindtap="{{a}}" class="locate-btn"><text>测试</text></button></view>
+<view></view>

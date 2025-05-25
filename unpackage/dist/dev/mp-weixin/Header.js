@@ -20,7 +20,7 @@ const _sfc_main = {
       try {
         this.locateMe();
       } catch (e) {
-        common_vendor.index.__f__("error", "at pages/Header/Header.vue:44", "地图初始化失败:", e);
+        common_vendor.index.__f__("error", "at pages/Header/Header.vue:42", "地图初始化失败:", e);
         common_vendor.index.showToast({
           title: "地图加载失败",
           icon: "none"
@@ -53,10 +53,10 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/pages/Disaster-Report/Disaster-Report",
         success: () => {
-          common_vendor.index.__f__("log", "at pages/Header/Header.vue:104", "跳转成功");
+          common_vendor.index.__f__("log", "at pages/Header/Header.vue:102", "跳转成功");
         },
         fail: (err) => {
-          common_vendor.index.__f__("error", "at pages/Header/Header.vue:107", "跳转失败:", err);
+          common_vendor.index.__f__("error", "at pages/Header/Header.vue:105", "跳转失败:", err);
           common_vendor.index.showToast({
             title: "无法打开警报页面",
             icon: "none"
@@ -120,9 +120,7 @@ const _sfc_main = {
   }
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
-    a: common_vendor.o((...args) => $options.locateMe && $options.locateMe(...args))
-  };
+  return {};
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
 exports.MiniProgramPage = MiniProgramPage;

@@ -33,12 +33,20 @@
           <text class="magnitude">{{ item.magnitude }}</text>
           <text class="magnitude-label">级</text>
         </view>
-        <view class="history-content">
+        <view class="history-content"
+			 @click="goToShelter">
           <view class="history-title">
             <text class="location">{{ item.title }}</text>
             <view :class="['status-badge', item.type]">
               <text>{{ item.status }}</text>
             </view>
+			<button 
+			    v-if="item.id === 'fake-test-001'" 
+			    class="test-btn" 
+			    @click="goToTestPage"
+			  >
+			    测试
+			  </button>
           </view>
           <view class="history-meta">
             <text class="history-time">
@@ -83,6 +91,18 @@ const historyItems = ref([])
 const loading = ref(false)
 const error = ref(null)
 const lastFetchTime = ref(0)
+
+const goToTestPage = () => {
+  uni.navigateTo({
+    url: '/pages/EmergencyAlert/EmergencyAlert' // 替换为你的测试页面路径
+  })
+}
+
+const goToShelter = () => {
+  uni.navigateTo({
+    url: '/pages/Disaster-Report/Disaster-Report' // 替换为你的测试页面路径
+  })
+}
 
 // 数据加载函数
 const loadData = async () => {
@@ -219,7 +239,23 @@ const retryLoading = () => {
 
 // 初始化加载数据
 onMounted(() => {
-  loadData()
+  loadData().then(() => {
+      // 添加一条虚构数据
+      historyItems.value.unshift({
+        id: 'fake-test-001',
+        type: 'automatic',
+        magnitude: '6.5',
+        title: '测试地震·东京湾',
+        status: '自动预警',
+        time: formatTime(new Date().toISOString()),
+        depth: '10.0',
+        intensity: 'VII',
+        epicenter: '东京湾附近',
+        description: '测试数据：深度10km，震中坐标 35.0, 140.0',
+        severityClass: getSeverityClass(6.5),
+        reportTime: formatTime(new Date().toISOString())
+      })
+    })
   
   // 每5分钟自动刷新数据
   setInterval(() => {
@@ -287,7 +323,7 @@ onMounted(() => {
 /* 地震条目卡片 */
 .history-item {
   display: flex;
-  flex-direction: row !important;
+  flex-direction: row;
   background: white;
   border-radius: 20rpx;
   padding: 20rpx;
@@ -512,6 +548,23 @@ onMounted(() => {
     align-self: flex-start;
   }
 }
+
+.test-btn {
+  padding: 12rpx 32rpx;
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: #fff;
+  font-size: 26rpx;
+  border: none;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(59, 130, 246, 0.4);
+  transition: all 0.3s;
+}
+
+.test-btn:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
 
 /* 加载动画 */
 .spinner {

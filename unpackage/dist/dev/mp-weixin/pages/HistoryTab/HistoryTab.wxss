@@ -51,7 +51,7 @@
 /* 地震条目卡片 */
 .history-item.data-v-ed885364 {
   display: flex;
-  flex-direction: row !important;
+  flex-direction: row;
   background: white;
   border-radius: 20rpx;
   padding: 20rpx;
@@ -261,6 +261,21 @@
     align-self: flex-start;
 }
 }
+.test-btn.data-v-ed885364 {
+  padding: 12rpx 32rpx;
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: #fff;
+  font-size: 26rpx;
+  border: none;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(59, 130, 246, 0.4);
+  transition: all 0.3s;
+}
+.test-btn.data-v-ed885364:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
 
 /* 加载动画 */
 .spinner.data-v-ed885364 {

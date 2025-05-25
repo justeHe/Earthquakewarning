@@ -3,9 +3,7 @@
     
     
     <!-- 定位按钮 -->
-    <button @tap="locateMe" class="locate-btn">
-      <text>测试</text>
-    </button>
+
   </view>
 </template>
 

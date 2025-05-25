@@ -2,28 +2,46 @@
 .guide-tab.data-v-2fd15fc7 {
   font-family: 'Arial', sans-serif;
   margin: 20px;
-  background: #f4f6f9; /* 背景颜色：浅灰色 */
+  background: #f4f6f9;
   padding: 20px;
   border-radius: 8px;
+  position: relative;
+}
+
+/* 应急中心按钮置顶 */
+.emergency-float-btn.data-v-2fd15fc7 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: #e74c3c;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.emergency-float-btn .btn-text.data-v-2fd15fc7 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.guide-category.data-v-2fd15fc7 {
+  margin-bottom: 25px;
 }
 .guide-title.data-v-2fd15fc7 {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #2c3e50;
+  color: #fff;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
-  background: linear-gradient(90deg, rgba(52, 152, 219, 1) 0%, rgba(41, 128, 185, 1) 100%); /* 渐变背景 */
+  background: linear-gradient(90deg, #3498db, #2980b9);
   padding: 8px 15px;
   border-radius: 5px;
-}
-.guide-title i.data-v-2fd15fc7 {
-  margin-right: 10px;
-  color: #fff;
-}
-.guide-category.data-v-2fd15fc7 {
-  margin-bottom: 25px;
 }
 .guide-item.data-v-2fd15fc7 {
   background-color: #fff;
@@ -44,18 +62,13 @@
   color: #34495e;
   display: flex;
   align-items: center;
-  transition: color 0.3s ease;
-}
-.guide-item-title i.data-v-2fd15fc7 {
-  margin-right: 10px;
-  color: #e74c3c;
 }
 .guide-item-desc.data-v-2fd15fc7 {
   font-size: 0.95rem;
   color: #7f8c8d;
 }
 .guide-item-desc.data-v-2fd15fc7::before {
-  content: "→ "; /* 添加箭头图标前缀 */
+  content: "→ ";
   color: #e74c3c;
   margin-right: 5px;
 }

@@ -70,21 +70,7 @@
 		}
 	},
 	{
-		"path" : "pages/test/test",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	},
-	{
 		"path" : "Visualization/Visualization",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	},
-	{
-		"path" : "pages/Visualization/Visualization",
 		"style" : 
 		{
 			"navigationBarTitleText" : ""
@@ -106,7 +92,7 @@
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "地震预警系统",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {

@@ -61,7 +61,7 @@
         </button>
         <button 
           class="action-btn guide-btn"
-          @click="showGuide"
+          @click="goToEemerCenter"
           aria-label="应急指南"
         >
           <i class="icon icon-guide"></i>
@@ -69,7 +69,7 @@
         </button>
         <button 
           class="action-btn close-btn"
-          @click="$emit('close')"
+          @click="goToMain"
           aria-label="关闭警报"
         >
           <i class="icon icon-close"></i>
@@ -82,6 +82,19 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+
+const goToMain = () => {
+  uni.navigateTo({
+    url: '/pages/index/index' // 替换为你的测试页面路径
+  })
+}
+
+	
+const goToEemerCenter = () =>{
+	uni.navigateTo({
+	  url: '/pages/Emergenciecenter/Emergenciecenter' // 替换为你的测试页面路径
+	})
+}
 
 const props = defineProps({
   duration: { type: Number, default: 20 }, // 倒计时总时长

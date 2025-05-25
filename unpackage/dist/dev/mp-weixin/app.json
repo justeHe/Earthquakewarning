@@ -8,15 +8,13 @@
     "pages/HistoryTab/HistoryTab",
     "pages/GuideTab/GuideTab",
     "pages/SettingsTab/SettingsTab",
-    "pages/test/test",
     "Visualization/Visualization",
-    "pages/Visualization/Visualization",
     "pages/Emergenciecenter/Emergenciecenter",
     "pages/Disaster-Report/Disaster-Report"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "地震预警系统",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

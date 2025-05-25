@@ -25,6 +25,18 @@ const _sfc_main = {
     const loading = common_vendor.ref(false);
     const error = common_vendor.ref(null);
     const lastFetchTime = common_vendor.ref(0);
+    const goToTestPage = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/EmergencyAlert/EmergencyAlert"
+        // 替换为你的测试页面路径
+      });
+    };
+    const goToShelter = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/Disaster-Report/Disaster-Report"
+        // 替换为你的测试页面路径
+      });
+    };
     const loadData = async () => {
       const now = Date.now();
       if (now - lastFetchTime.value < CACHE_TIME && historyItems.value.length > 0) {
@@ -65,7 +77,7 @@ const _sfc_main = {
         lastFetchTime.value = now;
       } catch (err) {
         error.value = err.errMsg || err.message || "获取地震数据失败";
-        common_vendor.index.__f__("error", "at pages/HistoryTab/HistoryTab.vue:136", "地震数据加载错误:", err);
+        common_vendor.index.__f__("error", "at pages/HistoryTab/HistoryTab.vue:156", "地震数据加载错误:", err);
         if (historyItems.value.length > 0) {
           error.value += " (显示缓存数据)";
         }
@@ -129,7 +141,22 @@ const _sfc_main = {
       loadData();
     };
     common_vendor.onMounted(() => {
-      loadData();
+      loadData().then(() => {
+        historyItems.value.unshift({
+          id: "fake-test-001",
+          type: "automatic",
+          magnitude: "6.5",
+          title: "测试地震·东京湾",
+          status: "自动预警",
+          time: formatTime((/* @__PURE__ */ new Date()).toISOString()),
+          depth: "10.0",
+          intensity: "VII",
+          epicenter: "东京湾附近",
+          description: "测试数据：深度10km，震中坐标 35.0, 140.0",
+          severityClass: getSeverityClass(6.5),
+          reportTime: formatTime((/* @__PURE__ */ new Date()).toISOString())
+        });
+      });
       setInterval(() => {
         if (!loading.value) {
           loadData();
@@ -177,31 +204,36 @@ const _sfc_main = {
             c: common_vendor.t(item.title),
             d: common_vendor.t(item.status),
             e: common_vendor.n(item.type),
-            f: "ed885364-3-" + i0,
-            g: common_vendor.t(item.time),
-            h: "ed885364-4-" + i0,
-            i: common_vendor.t(item.depth),
-            j: item.intensity
+            f: item.id === "fake-test-001"
+          }, item.id === "fake-test-001" ? {
+            g: common_vendor.o(goToTestPage, item.id)
+          } : {}, {
+            h: "ed885364-3-" + i0,
+            i: common_vendor.t(item.time),
+            j: "ed885364-4-" + i0,
+            k: common_vendor.t(item.depth),
+            l: item.intensity
           }, item.intensity ? {
-            k: "ed885364-5-" + i0,
-            l: common_vendor.p({
+            m: "ed885364-5-" + i0,
+            n: common_vendor.p({
               type: "notification",
               size: "14",
               color: "#888"
             }),
-            m: common_vendor.t(item.intensity)
+            o: common_vendor.t(item.intensity)
           } : {}, {
-            n: item.epicenter
+            p: item.epicenter
           }, item.epicenter ? {
-            o: "ed885364-6-" + i0,
-            p: common_vendor.p({
+            q: "ed885364-6-" + i0,
+            r: common_vendor.p({
               type: "map",
               size: "14",
               color: "#888"
             }),
-            q: common_vendor.t(item.epicenter)
+            s: common_vendor.t(item.epicenter)
           } : {}, {
-            r: item.id
+            t: common_vendor.o(goToShelter, item.id),
+            v: item.id
           });
         }),
         k: common_vendor.p({

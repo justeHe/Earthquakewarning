@@ -14,6 +14,18 @@ const _sfc_main = {
   },
   emits: ["close", "mute", "unmute", "show-guide"],
   setup(__props, { emit: __emit }) {
+    const goToMain = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/index/index"
+        // 替换为你的测试页面路径
+      });
+    };
+    const goToEemerCenter = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/Emergenciecenter/Emergenciecenter"
+        // 替换为你的测试页面路径
+      });
+    };
     const props = __props;
     const emit = __emit;
     const remainingTime = common_vendor.ref(props.duration);
@@ -38,9 +50,6 @@ const _sfc_main = {
       isMuted.value = !isMuted.value;
       emit(isMuted.value ? "mute" : "unmute");
     };
-    const showGuide = () => {
-      emit("show-guide");
-    };
     common_vendor.onMounted(() => {
       startCountdown();
     });
@@ -55,8 +64,8 @@ const _sfc_main = {
         g: common_vendor.t(isMuted.value ? "取消静音" : "静音"),
         h: common_vendor.o(toggleMute),
         i: isMuted.value ? "取消静音" : "静音警报",
-        j: common_vendor.o(showGuide),
-        k: common_vendor.o(($event) => _ctx.$emit("close")),
+        j: common_vendor.o(goToEemerCenter),
+        k: common_vendor.o(goToMain),
         l: common_vendor.o(($event) => _ctx.$emit("close"))
       };
     };
