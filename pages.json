@@ -81,7 +81,48 @@
 		"style" : 
 		{
 			"navigationBarTitleText" : ""
-		}
+		},
+		"requiredPrivateInfos": [
+		  "getLocation",
+		  "onLocationChange",
+		  "chooseLocation"
+		]
+	},
+	{
+		"path" : "pages/Shelter/Shelter",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		},
+		"requiredPrivateInfos": [
+		  "getLocation",
+		  "onLocationChange",
+		  "chooseLocation"
+		]
+	},
+	{
+		"path" : "pages/Settings/About",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		},
+		"requiredPrivateInfos": [
+		  "getLocation",
+		  "onLocationChange",
+		  "chooseLocation"
+		]
+	},
+	{
+		"path" : "pages/Settings/Privacy",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		},
+		"requiredPrivateInfos": [
+		  "getLocation",
+		  "onLocationChange",
+		  "chooseLocation"
+		]
 	},
 	{
 		"path" : "pages/Disaster-Report/Disaster-Report",

@@ -66,12 +66,21 @@
       </view>
 
       <!-- 社区避难所 -->
-      <view class="section shelter-map">
-        <view class="section-title">
-          <uni-icons type="location-filled" size="22" color="#e74c3c" />
-          <text class="title-text">附近避难所</text>
-          <text class="refresh-btn" @click="refreshLocation">刷新位置</text>
+      <view class="section shelter-section">
+        <view class="shelter-header">
+          <view class="section-title">
+            <uni-icons type="location-filled" size="22" color="#e74c3c" />
+            <text class="title-text">附近避难所</text>
+          </view>
+          <view class="header-actions">
+            <text class="refresh-btn" @click="refreshLocation">刷新位置</text>
+            <text class="detail-link" @click="goToShelterDetail">
+              查看详情
+              <uni-icons type="right" size="12" color="#666"></uni-icons>
+            </text>
+          </view>
         </view>
+        
         <map 
           id="emergency-map"
           :latitude="mapCenter.latitude"
@@ -206,6 +215,13 @@ const refreshLocation = () => {
 // 返回上级
 const navBack = () => {
   uni.navigateBack()
+}
+
+// 跳转到避难所详情页
+const goToShelterDetail = () => {
+  uni.navigateTo({
+    url: '/pages/Shelter/Shelter'
+  })
 }
 </script>
 
@@ -485,4 +501,51 @@ const navBack = () => {
   height: 48rpx;
 }
 
+.shelter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+  
+  .section-title {
+    display: flex;
+    align-items: center;
+    
+    .title-text {
+      font-size: 32rpx;
+      font-weight: 600;
+      margin-left: 12rpx;
+    }
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16rpx;
+    
+    .refresh-btn {
+      font-size: 24rpx;
+      color: #e74c3c;
+      padding: 4rpx 12rpx;
+      border-radius: 6rpx;
+      background: rgba(231,76,60,0.1);
+    }
+    
+    .detail-link {
+      display: flex;
+      align-items: center;
+      font-size: 24rpx;
+      color: #666;
+      padding: 4rpx 0;
+      
+      .uni-icons {
+        margin-left: 4rpx;
+      }
+      
+      &:active {
+        opacity: 0.7;
+      }
+    }
+  }
+}
 </style>

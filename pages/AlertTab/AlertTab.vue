@@ -28,14 +28,27 @@
         :markers="markers"
         :show-location="true"
         style="width:100%;height:300px;"
-        @tap="handleMapTap"
       ></map>
-	  
+      <!-- 地图控制按钮 -->
+      <view class="map-controls">
+        <view 
+          class="location-btn" 
+          :class="{ 'is-loading': isUpdatingLocation }" 
+          @tap="backToMyLocation"
+        >
+          <text class="location-text">我的位置</text>
+        </view>
+      </view>
     </view>
     
     <!-- 地震信息 -->
     <h3 class="quake-title">周边地震</h3>
-    <div class="quake-card" v-for="quake in quakes" :key="quake.id">
+    <div 
+      class="quake-card" 
+      v-for="quake in quakes" 
+      :key="quake.id"
+      @click="moveToQuake(quake)"
+    >
       <div class="quake-header">
         <div class="quake-magnitude">{{ quake.magnitude }}</div>
         <div class="quake-time">{{ quake.time }}</div>
@@ -48,9 +61,9 @@
         <i class="fas fa-exclamation-triangle warning-icon"></i>
         <div>{{ quake.warning }}</div>
       </div>
-	  <div class="quake-coords"> <!-- 新增坐标显示 -->
-	        经纬度: {{ quake.latitude.toFixed(4) }}, {{ quake.longitude.toFixed(4) }}
-	    </div>
+      <div class="quake-coords">
+        经纬度: {{ quake.latitude.toFixed(4) }}, {{ quake.longitude.toFixed(4) }}
+      </div>
     </div>
   </div>
 </template>
@@ -71,9 +84,9 @@ const location = ref('正在获取位置...')
 const isRefreshing = ref(false)
 
 const quakes = ref([
-  { id: 1, magnitude: 'M4.2', time: '2023-05-15 08:23', distance: '85km', depth: '10km', warning: '不会对您所在区域造成明显影响',latitude: 40,
-    longitude: 117},
-  { id: 2, magnitude: 'M5.8', time: '2023-05-12 14:37', distance: '120km', depth: '15km', warning: '部分地区有震感', latitude: 39.9040,
+  { id: 1, magnitude: 'M4.2', time: '2025-05-15 08:23', distance: '85km', depth: '10km', warning: '无明显震感',latitude: 30,
+    longitude: 120},
+  { id: 2, magnitude: 'M5.8', time: '2025-05-12 14:37', distance: '120km', depth: '15km', warning: '部分地区有震感', latitude: 39.9040,
     longitude: 116.4071 }
 ])
 
@@ -82,11 +95,11 @@ const quakes = ref([
 // 小程序地图相关
 const latitude = ref(39.90469)
 const longitude = ref(116.40717)
-const markers = ref([{
-  id: 1,
-  width: 30,
-  height: 30
-}])
+const markers = ref([])
+
+// 用户实际位置
+const myLatitude = ref(39.90469)
+const myLongitude = ref(116.40717)
 
 function processRegeoData(data) {
   const regeocodeData = data.regeocodeData || {};
@@ -132,60 +145,128 @@ const getAddress = async () => {
 
 
 // 更新地图标记
-function updateAmapMarker() {
-  markers.value = [{
-    id: 1,
-    latitude: latitude.value,
-    longitude: longitude.value,
-    // iconPath: '/static/location.png',
-    width: 30,
-    height: 30,
-    callout: {
-      content: '我的位置',
-      color: '#ffffff',
-      bgColor: '#1890ff',
-      padding: 5,
-      borderRadius: 4,
-      display: 'ALWAYS'
+const updateMarkers = (activeId = null) => {
+  if (activeId) {
+    // 查看地震位置时只显示该地震点
+    const quake = quakes.value.find(q => q.id === activeId)
+    if (quake) {
+      markers.value = [{
+        id: quake.id,
+        latitude: quake.latitude,
+        longitude: quake.longitude,
+        width: 40,
+        height: 40,
+        callout: {
+          content: `${quake.magnitude} ${quake.distance}\n${quake.warning}`,
+          color: '#ffffff',
+          bgColor: '#1890ff',
+          padding: 5,
+          borderRadius: 4,
+          display: 'ALWAYS'
+        }
+      }]
     }
-  },
-  ...quakes.value.map(quake => ({
-      id: quake.id+1,
-      latitude: quake.latitude,
-      longitude: quake.longitude,
-      width: 30,
-      height: 30,
-      callout: {
-        content: `${quake.magnitude} ${quake.distance}\n${quake.warning}`,
-        color: '#ffffff',
-        bgColor: '#ff4d4f',
-        padding: 5,
-        borderRadius: 4,
-        display: 'ALWAYS'
-      }
-    }))]
+  } else {
+    // 正常显示所有点
+    markers.value = [
+      {
+        id: 0,
+        latitude: myLatitude.value,
+        longitude: myLongitude.value,
+        width: 30,
+        height: 30,
+        callout: {
+          content: '当前位置',
+          color: '#ffffff',
+          bgColor: '#1890ff',
+          padding: 5,
+          borderRadius: 4,
+          display: 'ALWAYS'
+        }
+      },
+      ...quakes.value.map(quake => ({
+        id: quake.id,
+        latitude: quake.latitude,
+        longitude: quake.longitude,
+        width: 30,
+        height: 30,
+        callout: {
+          content: `${quake.magnitude} ${quake.distance}\n${quake.warning}`,
+          color: '#ffffff',
+          bgColor: '#ff4d4f',
+          padding: 5,
+          borderRadius: 4,
+          display: 'ALWAYS'
+        }
+      }))
+    ]
+  }
 }
 
-// 微信定位作为备用
-function getWxLocationAsFallback() {
+// 移动到地震位置
+const moveToQuake = (quake) => {
+  console.log('点击地震卡片:', quake)
+  isViewingQuake.value = true
+  // 更新地图视图中心点
+  latitude.value = quake.latitude
+  longitude.value = quake.longitude
+  // 更新标记点，只显示选中的地震点
+  updateMarkers(quake.id)
+}
+
+// 是否正在更新位置
+const isUpdatingLocation = ref(false)
+
+// 获取位置并更新
+const getWxLocationAsFallback = () => {
+  isUpdatingLocation.value = true
   wx.getLocation({
     type: 'gcj02',
     success: (res) => {
-		console.log(res)
-      longitude.value = res.longitude
-      latitude.value = res.latitude
-      updateAmapMarker()
+      console.log('获取位置成功:', res)
+      myLongitude.value = res.longitude
+      myLatitude.value = res.latitude
+      if (!isViewingQuake.value) {
+        longitude.value = res.longitude
+        latitude.value = res.latitude
+      }
+      updateMarkers()
       getAddress()
         .then(data => location.value = data.name)
-        .catch(err => console.error('操作失败:', err.message))
+        .catch(err => console.error('获取地址失败:', err.message))
+    },
+    fail: (err) => {
+      console.error('获取位置失败:', err)
+      uni.showToast({
+        title: '获取位置失败',
+        icon: 'none'
+      })
+    },
+    complete: () => {
+      isUpdatingLocation.value = false
     }
   })
 }
 
+// 回到当前位置
+const backToMyLocation = () => {
+  isViewingQuake.value = false
+  // 更新到用户当前位置
+  latitude.value = myLatitude.value
+  longitude.value = myLongitude.value
+  // 更新标记，显示所有点
+  updateMarkers()
+  // 重新获取一次位置
+  getWxLocationAsFallback()
+}
 
+// 是否正在查看地震位置
+const isViewingQuake = ref(false)
 
 onMounted(() => {
+  console.log('初始化地图组件')
   getWxLocationAsFallback()
+  updateMarkers()
 })
 </script>
 
@@ -409,5 +490,43 @@ onMounted(() => {
   .quake-title {
     font-size: 1.1rem;
   }
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.map-controls {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
+.location-btn {
+  min-width: 56px;
+  height: 32px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 12px;
+}
+
+.location-btn.is-loading {
+  opacity: 0.7;
+}
+
+.location-text {
+  font-size: 14px;
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.location-btn:active {
+  background-color: #F5F5F5;
 }
 </style>

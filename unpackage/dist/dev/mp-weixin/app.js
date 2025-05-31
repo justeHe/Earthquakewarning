@@ -11,6 +11,9 @@ if (!Math) {
   "./pages/GuideTab/GuideTab.js";
   "./pages/SettingsTab/SettingsTab.js";
   "./pages/Emergenciecenter/Emergenciecenter.js";
+  "./pages/Shelter/Shelter.js";
+  "./pages/Settings/About.js";
+  "./pages/Settings/Privacy.js";
   "./pages/Disaster-Report/Disaster-Report.js";
 }
 const _sfc_main = {

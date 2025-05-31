@@ -1,0 +1,370 @@
+/* 水平间距 */
+/* 水平间距 */
+.shelter-page.data-v-61b16127 {
+  min-height: 100vh;
+  background: #f8f9fa;
+  position: relative;
+}
+.shelter-map.data-v-61b16127 {
+  width: 100%;
+  height: 45vh;
+}
+.map-legend.data-v-61b16127 {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 16rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+.legend-item.data-v-61b16127 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+.legend-item.data-v-61b16127:last-child {
+  margin-bottom: 0;
+}
+.legend-icon.data-v-61b16127 {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+}
+.legend-text.data-v-61b16127 {
+  font-size: 24rpx;
+  color: #666;
+}
+.location-list.data-v-61b16127 {
+  height: calc(55vh - 120rpx);
+  background: #ffffff;
+  border-radius: 32rpx 32rpx 0 0;
+  margin-top: -20rpx;
+  padding: 32rpx;
+  position: relative;
+  z-index: 1;
+}
+.type-tabs.data-v-61b16127 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32rpx;
+  padding: 0 16rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.type-tabs.data-v-61b16127::-webkit-scrollbar {
+  display: none;
+}
+.type-tabs .tab-item.data-v-61b16127 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx;
+  margin-right: 24rpx;
+  min-width: 140rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.type-tabs .tab-item.data-v-61b16127:last-child {
+  margin-right: 0;
+}
+.type-tabs .tab-item.active.data-v-61b16127 {
+  background: #f0f9ff;
+}
+.type-tabs .tab-item.active text.data-v-61b16127 {
+  color: #3b82f6;
+}
+.type-tabs .tab-item .tab-icon.data-v-61b16127 {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 8rpx;
+}
+.type-tabs .tab-item text.data-v-61b16127 {
+  font-size: 24rpx;
+  color: #666;
+  white-space: nowrap;
+}
+.location-card.data-v-61b16127 {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.location-card.data-v-61b16127:active {
+  transform: scale(0.98);
+}
+.card-header.data-v-61b16127 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.location-type.data-v-61b16127 {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  background: var(--e6d4df30);
+}
+.location-type .type-icon.data-v-61b16127 {
+  width: 36rpx;
+  height: 36rpx;
+}
+.header-info.data-v-61b16127 {
+  flex: 1;
+}
+.header-info .location-name.data-v-61b16127 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1e293b;
+  display: block;
+  margin-bottom: 4rpx;
+}
+.header-info .distance.data-v-61b16127 {
+  font-size: 24rpx;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+}
+.header-info .distance.data-v-61b16127::before {
+  content: "";
+  display: inline-block;
+  width: 8rpx;
+  height: 8rpx;
+  background: #64748b;
+  border-radius: 50%;
+  margin-right: 8rpx;
+}
+.card-content .info-item.data-v-61b16127 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding: 12rpx 16rpx;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 8rpx;
+}
+.card-content .info-item.data-v-61b16127:last-child {
+  margin-bottom: 0;
+}
+.card-content .info-item .uni-icons.data-v-61b16127 {
+  margin-right: 12rpx;
+  color: #3b82f6;
+}
+.card-content .info-item text.data-v-61b16127 {
+  font-size: 26rpx;
+  color: #1e293b;
+}
+.detail-popup.data-v-61b16127 {
+  background: #ffffff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 32rpx;
+  max-height: 80vh;
+}
+.popup-header.data-v-61b16127 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+.popup-title.data-v-61b16127 {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1e293b;
+}
+.close-btn.data-v-61b16127 {
+  padding: 12rpx;
+}
+.close-btn.data-v-61b16127:active {
+  opacity: 0.7;
+}
+.detail-header.data-v-61b16127 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+.detail-section.data-v-61b16127 {
+  margin-bottom: 32rpx;
+}
+.detail-section.data-v-61b16127:last-child {
+  margin-bottom: 0;
+}
+.section-title.data-v-61b16127 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16rpx;
+}
+.info-grid.data-v-61b16127 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+}
+.info-grid .info-item.data-v-61b16127 {
+  background: #f8fafc;
+  padding: 16rpx;
+  border-radius: 12rpx;
+}
+.info-grid .info-item .label.data-v-61b16127 {
+  font-size: 24rpx;
+  color: #64748b;
+  display: block;
+}
+.info-grid .info-item .value.data-v-61b16127 {
+  font-size: 28rpx;
+  color: #1e293b;
+  font-weight: 500;
+  margin-top: 4rpx;
+  display: block;
+}
+.supplies-list .supply-item.data-v-61b16127 {
+  margin-bottom: 16rpx;
+}
+.supplies-list .supply-item.data-v-61b16127:last-child {
+  margin-bottom: 0;
+}
+.supply-header.data-v-61b16127 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+.supply-name.data-v-61b16127 {
+  font-size: 26rpx;
+  color: #1e293b;
+}
+.supply-status.data-v-61b16127 {
+  font-size: 24rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+.supply-status.status-good.data-v-61b16127 {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.supply-status.status-medium.data-v-61b16127 {
+  background: #fef3c7;
+  color: #d97706;
+}
+.supply-status.status-low.data-v-61b16127 {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.supply-bar.data-v-61b16127 {
+  height: 12rpx;
+  background: #f1f5f9;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+.supply-progress.data-v-61b16127 {
+  height: 100%;
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+.contact-list .contact-item.data-v-61b16127 {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #f8fafc;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+}
+.contact-list .contact-item.data-v-61b16127:last-child {
+  margin-bottom: 0;
+}
+.contact-list .contact-item.data-v-61b16127:active {
+  opacity: 0.7;
+}
+.contact-list .contact-item .uni-icons.data-v-61b16127 {
+  margin-right: 12rpx;
+}
+.contact-list .contact-item .contact-text.data-v-61b16127 {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1e293b;
+}
+.contact-list .contact-item .contact-label.data-v-61b16127 {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-left: 12rpx;
+}
+.route-info.data-v-61b16127 {
+  background: #f8fafc;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+.route-info .route-text.data-v-61b16127 {
+  font-size: 26rpx;
+  color: #1e293b;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+  display: block;
+}
+.nav-btn.data-v-61b16127 {
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 28rpx;
+  padding: 16rpx 32rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+.nav-btn .uni-icons.data-v-61b16127 {
+  margin-left: 8rpx;
+}
+.nav-btn.data-v-61b16127:active {
+  opacity: 0.9;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+.shelter-page.data-v-61b16127 {
+    background: #1a1a1a;
+}
+.location-list.data-v-61b16127,
+.detail-popup.data-v-61b16127 {
+    background: #262626;
+}
+.location-card.data-v-61b16127 {
+    background: #333333;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.card-header.data-v-61b16127 {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+.header-info .location-name.data-v-61b16127 {
+    color: #e5e7eb;
+}
+.header-info .distance.data-v-61b16127 {
+    color: #9ca3af;
+}
+.header-info .distance.data-v-61b16127::before {
+    background: #9ca3af;
+}
+.card-content .info-item.data-v-61b16127 {
+    background: rgba(59, 130, 246, 0.1);
+}
+.card-content .info-item text.data-v-61b16127 {
+    color: #e5e7eb;
+}
+.contact-item.data-v-61b16127,
+.route-info.data-v-61b16127 {
+    background: #333333;
+}
+.contact-text.data-v-61b16127,
+.route-text.data-v-61b16127 {
+    color: #e5e7eb;
+}
+.location-type.data-v-61b16127 {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+}

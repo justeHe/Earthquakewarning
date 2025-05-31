@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="48" height="48" rx="12" fill="#3B82F6"/>
+  
+  <!-- 波纹效果 -->
+  <circle cx="24" cy="24" r="20" stroke="white" stroke-opacity="0.2" stroke-width="2"/>
+  <circle cx="24" cy="24" r="16" stroke="white" stroke-opacity="0.3" stroke-width="2"/>
+  
+  <!-- 警报图标 -->
+  <path d="M24 12L30 28H18L24 12Z" fill="white"/>
+  <circle cx="24" cy="31" r="1.5" fill="white"/>
+  
+  <!-- 装饰线条 -->
+  <line x1="12" y1="24" x2="16" y2="24" stroke="white" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="24" x2="36" y2="24" stroke="white" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round"/>
+</svg> 

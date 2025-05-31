@@ -1,0 +1,101 @@
+/* 水平间距 */
+/* 水平间距 */
+.privacy-page.data-v-ffe31df6 {
+  min-height: 100vh;
+  background: #F8FAFC;
+  padding-bottom: 32rpx;
+}
+.header.data-v-ffe31df6 {
+  background: #FFFFFF;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+.header .title.data-v-ffe31df6 {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1E293B;
+  display: block;
+  margin-bottom: 8rpx;
+}
+.header .update-time.data-v-ffe31df6 {
+  font-size: 24rpx;
+  color: #64748B;
+}
+.content.data-v-ffe31df6 {
+  height: calc(100vh - 180rpx);
+}
+.section.data-v-ffe31df6 {
+  background: #FFFFFF;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+.section .section-title.data-v-ffe31df6 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1E293B;
+  display: block;
+  margin-bottom: 16rpx;
+}
+.section .section-text.data-v-ffe31df6 {
+  font-size: 28rpx;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+  display: block;
+}
+.list.data-v-ffe31df6 {
+  margin-top: 16rpx;
+}
+.list .list-item.data-v-ffe31df6 {
+  display: flex;
+  margin-bottom: 12rpx;
+}
+.list .list-item .dot.data-v-ffe31df6 {
+  color: #3B82F6;
+  margin-right: 12rpx;
+  font-size: 28rpx;
+}
+.list .list-item text.data-v-ffe31df6 {
+  font-size: 28rpx;
+  color: #334155;
+  line-height: 1.6;
+}
+.contact-info.data-v-ffe31df6 {
+  margin-top: 16rpx;
+}
+.contact-info text.data-v-ffe31df6 {
+  font-size: 28rpx;
+  color: #334155;
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+.privacy-page.data-v-ffe31df6 {
+    background: #1A1A1A;
+}
+.header.data-v-ffe31df6,
+.section.data-v-ffe31df6 {
+    background: #262626;
+}
+.header .title.data-v-ffe31df6 {
+    color: #E5E7EB;
+}
+.header .update-time.data-v-ffe31df6 {
+    color: #9CA3AF;
+}
+.section .section-title.data-v-ffe31df6 {
+    color: #E5E7EB;
+}
+.section .section-text.data-v-ffe31df6 {
+    color: #D1D5DB;
+}
+.list .list-item text.data-v-ffe31df6 {
+    color: #D1D5DB;
+}
+.contact-info text.data-v-ffe31df6 {
+    color: #D1D5DB;
+}
+}

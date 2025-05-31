@@ -1,0 +1,156 @@
+/* 水平间距 */
+/* 水平间距 */
+.about-page.data-v-e8f8f839 {
+  min-height: 100vh;
+  background: #F8FAFC;
+  padding-bottom: 32rpx;
+}
+.header.data-v-e8f8f839 {
+  background: #FFFFFF;
+  padding: 48rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.header .logo.data-v-e8f8f839 {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 24rpx;
+}
+.header .app-name.data-v-e8f8f839 {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 8rpx;
+}
+.header .version.data-v-e8f8f839 {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-bottom: 16rpx;
+}
+.header .slogan.data-v-e8f8f839 {
+  font-size: 28rpx;
+  color: #334155;
+  text-align: center;
+}
+.content.data-v-e8f8f839 {
+  padding: 0 32rpx;
+}
+.section.data-v-e8f8f839 {
+  background: #FFFFFF;
+  padding: 32rpx;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+.section .section-title.data-v-e8f8f839 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 16rpx;
+}
+.section .section-text.data-v-e8f8f839 {
+  font-size: 28rpx;
+  color: #334155;
+  line-height: 1.6;
+}
+.feature-list.data-v-e8f8f839 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+}
+.feature-list .feature-item.data-v-e8f8f839 {
+  background: #F8FAFC;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.feature-list .feature-item .feature-name.data-v-e8f8f839 {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1E293B;
+  margin: 12rpx 0 8rpx;
+}
+.feature-list .feature-item .feature-desc.data-v-e8f8f839 {
+  font-size: 24rpx;
+  color: #64748B;
+  line-height: 1.4;
+}
+.contact-list .contact-item.data-v-e8f8f839 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1px solid #E2E8F0;
+}
+.contact-list .contact-item.data-v-e8f8f839:last-child {
+  border-bottom: none;
+}
+.contact-list .contact-item .label.data-v-e8f8f839 {
+  font-size: 28rpx;
+  color: #334155;
+}
+.contact-list .contact-item .value.data-v-e8f8f839 {
+  font-size: 28rpx;
+  color: #64748B;
+}
+.copyright.data-v-e8f8f839 {
+  text-align: center;
+  padding: 32rpx 0;
+}
+.copyright text.data-v-e8f8f839 {
+  font-size: 24rpx;
+  color: #64748B;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+.about-page.data-v-e8f8f839 {
+    background: #1A1A1A;
+}
+.header.data-v-e8f8f839 {
+    background: #262626;
+}
+.header .app-name.data-v-e8f8f839 {
+    color: #E5E7EB;
+}
+.header .version.data-v-e8f8f839 {
+    color: #9CA3AF;
+}
+.header .slogan.data-v-e8f8f839 {
+    color: #D1D5DB;
+}
+.section.data-v-e8f8f839 {
+    background: #262626;
+}
+.section .section-title.data-v-e8f8f839 {
+    color: #E5E7EB;
+}
+.section .section-text.data-v-e8f8f839 {
+    color: #D1D5DB;
+}
+.feature-list .feature-item.data-v-e8f8f839 {
+    background: #1A1A1A;
+}
+.feature-list .feature-item .feature-name.data-v-e8f8f839 {
+    color: #E5E7EB;
+}
+.feature-list .feature-item .feature-desc.data-v-e8f8f839 {
+    color: #9CA3AF;
+}
+.contact-list .contact-item.data-v-e8f8f839 {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+.contact-list .contact-item .label.data-v-e8f8f839 {
+    color: #D1D5DB;
+}
+.contact-list .contact-item .value.data-v-e8f8f839 {
+    color: #9CA3AF;
+}
+.copyright text.data-v-e8f8f839 {
+    color: #9CA3AF;
+}
+}

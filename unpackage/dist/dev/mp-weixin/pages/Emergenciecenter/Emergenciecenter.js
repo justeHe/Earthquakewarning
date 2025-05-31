@@ -100,6 +100,11 @@ const _sfc_main = {
     const navBack = () => {
       common_vendor.index.navigateBack();
     };
+    const goToShelterDetail = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/Shelter/Shelter"
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
@@ -149,24 +154,30 @@ const _sfc_main = {
           color: "#e74c3c"
         }),
         g: common_vendor.o(refreshLocation),
-        h: common_vendor.f(legend.value, (item, k0, i0) => {
+        h: common_vendor.p({
+          type: "right",
+          size: "12",
+          color: "#666"
+        }),
+        i: common_vendor.o(goToShelterDetail),
+        j: common_vendor.f(legend.value, (item, k0, i0) => {
           return {
             a: item.color,
             b: common_vendor.t(item.text),
-            c: "0f85c3a8-4-" + i0,
+            c: "0f85c3a8-5-" + i0,
             d: item.text
           };
         }),
-        i: mapCenter.value.latitude,
-        j: mapCenter.value.longitude,
-        k: shelterMarkers.value,
-        l: _ctx.polyline,
-        m: common_vendor.p({
+        k: mapCenter.value.latitude,
+        l: mapCenter.value.longitude,
+        m: shelterMarkers.value,
+        n: _ctx.polyline,
+        o: common_vendor.p({
           type: "arrow-left",
           size: "24",
           color: "#fff"
         }),
-        n: common_vendor.o(navBack)
+        p: common_vendor.o(navBack)
       };
     };
   }

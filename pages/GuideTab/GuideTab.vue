@@ -1,164 +1,278 @@
 <template>
-  <div class="guide-tab">
-    <!-- 应急中心按钮 -->
-    <view class="emergency-float-btn" @click="navigateToEmergency">
-      <uni-icons type="fire" size="22" color="#fff" />
-      <text class="btn-text">应急中心</text>
+  <view class="guide-container">
+    <!-- 应急中心快速入口 -->
+    <view class="emergency-button" @click="navigateToEmergency">
+      <uni-icons type="warn" size="24" color="#FFFFFF"></uni-icons>
+      <text class="button-text">紧急求助</text>
     </view>
 
-    <!-- 避险指南分类 -->
-    <div class="guide-category" v-for="category in guideCategories" :key="category.id">
-      <h3 class="guide-title">
-        <uni-icons :type="category.icon" size="20" color="#fff" style="margin-right: 8px;" />
-        {{ category.title }}
-      </h3>
-      <div class="guide-item" v-for="item in category.items" :key="item.id">
-        <h4 class="guide-item-title">
-          <uni-icons :type="item.icon" size="18" color="#e74c3c" style="margin-right: 8px;" />
-          {{ item.title }}
-        </h4>
-        <p class="guide-item-desc">{{ item.desc }}</p>
-      </div>
-    </div>
-  </div>
+    <!-- 顶部动画区域 -->
+    <view class="animation-section">
+      <image class="guide-gif" src="/static/images/guide.gif" mode="aspectFit" />
+      <text class="animation-tip">地震来临时保持冷静，遵循以下指南</text>
+    </view>
+
+    <!-- 主要内容区域 -->
+    <scroll-view class="guide-content" scroll-y>
+      <!-- 室内避险指南 -->
+      <view class="guide-section">
+        <view class="section-header">
+          <uni-icons type="home" size="24" color="#3B82F6"></uni-icons>
+          <text class="section-title">室内避险指南</text>
+        </view>
+        <view class="steps-list">
+          <view class="step-item">
+            <text class="step-number">1</text>
+            <text class="step-text">立即躲在结实的桌子下方或承重墙角落</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">2</text>
+            <text class="step-text">远离窗户、玻璃和悬挂物</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">3</text>
+            <text class="step-text">关闭煤气和电源</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">4</text>
+            <text class="step-text">不要使用电梯，等待地震结束后有序撤离</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 户外避险指南 -->
+      <view class="guide-section">
+        <view class="section-header">
+          <uni-icons type="location" size="24" color="#22C55E"></uni-icons>
+          <text class="section-title">户外避险指南</text>
+        </view>
+        <view class="steps-list">
+          <view class="step-item">
+            <text class="step-number">1</text>
+            <text class="step-text">迅速远离建筑物、广告牌和电线杆</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">2</text>
+            <text class="step-text">寻找开阔地带，避免在高大建筑之间停留</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">3</text>
+            <text class="step-text">注意防范余震，不要返回建筑物内</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">4</text>
+            <text class="step-text">听从现场指挥人员的疏散指示</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 交通工具中的避险指南 -->
+      <view class="guide-section">
+        <view class="section-header">
+          <image class="custom-icon" src="/static/icons/vehicle.svg" mode="aspectFit" />
+          <text class="section-title">交通工具中的避险指南</text>
+        </view>
+        <view class="steps-list">
+          <view class="step-item">
+            <text class="step-number">1</text>
+            <text class="step-text">减速靠右行驶，选择安全地点停车</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">2</text>
+            <text class="step-text">避免在桥梁、隧道或高架路上停留</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">3</text>
+            <text class="step-text">打开应急灯，保持车内广播开启</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">4</text>
+            <text class="step-text">不要立即离开车辆，等待地震结束</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 地震后注意事项 -->
+      <view class="guide-section">
+        <view class="section-header">
+          <uni-icons type="info" size="24" color="#8B5CF6"></uni-icons>
+          <text class="section-title">地震后注意事项</text>
+        </view>
+        <view class="steps-list">
+          <view class="step-item">
+            <text class="step-number">1</text>
+            <text class="step-text">检查自身及周围人员伤势</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">2</text>
+            <text class="step-text">警惕余震，不要进入受损建筑</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">3</text>
+            <text class="step-text">保持通讯设备畅通，关注官方信息</text>
+          </view>
+          <view class="step-item">
+            <text class="step-number">4</text>
+            <text class="step-text">配合救援人员工作，有序参与救援</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
 </template>
 
-
-
 <script setup>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 
+// 跳转到应急中心
 const navigateToEmergency = () => {
   uni.navigateTo({
     url: '/pages/Emergenciecenter/Emergenciecenter'
   })
 }
-
-const guideCategories = ref([
-  {
-    id: 1,
-    title: '居家避险',
-    icon: 'home', // uni-icons 类型
-    items: [
-      { id: 1, title: '室内安全', icon: '1', desc: '迅速躲在结实的桌子、床下或内墙角落；远离窗户、玻璃及悬挂物；不要跳楼或使用电梯。' },
-      { id: 2, title: '厨房避险', icon: '1', desc: '立即关闭燃气阀门和电源；躲避时远离炉灶、冰箱等可能倾倒的重物。' }
-    ]
-  },
-  {
-    id: 2,
-    title: '公共场所避险',
-    icon: 'shop',
-    items: [
-      { id: 1, title: '商场/超市', icon: '1', desc: '就近躲在大柱子或坚固柜台旁；不要拥挤冲向出口，防止踩踏；避开货架及玻璃橱窗。' },
-      { id: 2, title: '学校/办公室', icon: '1', desc: '迅速躲在课桌或办公桌下；保护好头部；震动停止后有序疏散到空旷地带。' }
-    ]
-  },
-  {
-    id: 3,
-    title: '户外避险',
-    icon: 'location',
-    items: [
-      { id: 1, title: '街道/开阔地', icon: '1', desc: '远离建筑物、电线杆、广告牌；蹲下保护头部；不要返回室内取物。' },
-      { id: 2, title: '行驶车辆', icon: '1', desc: '尽快在安全地带停车；不要停在桥梁、隧道或高大建筑物旁；留在车内通常比跑出去更安全。' }
-    ]
-  }
-])
 </script>
 
-
-<style scoped>
-.guide-tab {
-  font-family: 'Arial', sans-serif;
-  margin: 20px;
-  background: #f4f6f9;
-  padding: 20px;
-  border-radius: 8px;
+<style lang="scss" scoped>
+.guide-container {
+  min-height: 100vh;
+  background: #F8FAFC;
+  padding-bottom: env(safe-area-inset-bottom);
   position: relative;
 }
 
-/* 应急中心按钮置顶 */
-.emergency-float-btn {
-  position: sticky;
-  top: 0;
-  z-index: 99;
-  background: #e74c3c;
-  color: white;
+.emergency-button {
+  position: fixed;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #EF4444;
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
   display: flex;
   align-items: center;
-  padding: 10px 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-
-.emergency-float-btn .btn-text {
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 8px;
-}
-
-.guide-category {
-  margin-bottom: 25px;
-}
-
-.guide-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(90deg, #3498db, #2980b9);
-  padding: 8px 15px;
-  border-radius: 5px;
-}
-
-.guide-item {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.guide-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.guide-item-title {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: #34495e;
-  display: flex;
-  align-items: center;
-}
-
-.guide-item-desc {
-  font-size: 0.95rem;
-  color: #7f8c8d;
-}
-
-.guide-item-desc::before {
-  content: "→ ";
-  color: #e74c3c;
-  margin-right: 5px;
-}
-
-@media (max-width: 768px) {
-  .guide-tab {
-    margin: 10px;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(239, 68, 68, 0.2);
+  z-index: 100;
+  
+  .button-text {
+    color: #FFFFFF;
+    font-size: 32rpx;
+    font-weight: 600;
   }
+}
 
-  .guide-title {
-    font-size: 1rem;
+.animation-section {
+  background: #FFFFFF;
+  padding: 32rpx;
+  padding-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .guide-gif {
+    width: 100%;
+    height: 300rpx;
+    margin-bottom: 16rpx;
   }
+  
+  .animation-tip {
+    font-size: 28rpx;
+    color: #64748B;
+    text-align: center;
+  }
+}
 
-  .guide-item {
-    padding: 15px;
+.guide-content {
+  padding: 20rpx;
+}
+
+.guide-section {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20rpx;
+    
+    .section-title {
+      font-size: 32rpx;
+      font-weight: 600;
+      color: #1E293B;
+      margin-left: 12rpx;
+    }
+
+    .custom-icon {
+      width: 48rpx;
+      height: 48rpx;
+      color: #F59E0B;
+    }
+  }
+}
+
+.steps-list {
+  .step-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16rpx;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .step-number {
+      width: 40rpx;
+      height: 40rpx;
+      background: #3B82F6;
+      color: #FFFFFF;
+      border-radius: 20rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24rpx;
+      margin-right: 16rpx;
+      flex-shrink: 0;
+    }
+    
+    .step-text {
+      font-size: 28rpx;
+      color: #334155;
+      line-height: 1.5;
+    }
+  }
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+  .guide-container {
+    background: #1A1A1A;
+  }
+  
+  .animation-section,
+  .guide-section {
+    background: #262626;
+  }
+  
+  .animation-section {
+    .animation-tip {
+      color: #9CA3AF;
+    }
+  }
+  
+  .section-header {
+    .section-title {
+      color: #E5E7EB;
+    }
+  }
+  
+  .steps-list {
+    .step-item {
+      .step-text {
+        color: #D1D5DB;
+      }
+    }
   }
 }
 </style>

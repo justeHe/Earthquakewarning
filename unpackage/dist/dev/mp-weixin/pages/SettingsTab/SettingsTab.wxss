@@ -1,71 +1,131 @@
 /* 水平间距 */
 /* 水平间距 */
 .settings-container.data-v-9bc93f33 {
-  padding: 20rpx;
+  min-height: 100vh;
+  background: #F8FAFC;
+  padding: 20rpx 0;
+}
+.app-card.data-v-9bc93f33 {
+  margin: 0 32rpx 32rpx;
+  padding: 32rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+.app-card .app-info.data-v-9bc93f33 {
+  display: flex;
+  align-items: center;
+}
+.app-card .app-info .app-logo.data-v-9bc93f33 {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 16rpx;
+  margin-right: 24rpx;
+}
+.app-card .app-info .app-details .app-name.data-v-9bc93f33 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1E293B;
+  display: block;
+  margin-bottom: 4rpx;
+}
+.app-card .app-info .app-details .version.data-v-9bc93f33 {
+  font-size: 24rpx;
+  color: #64748B;
+}
+.settings-group.data-v-9bc93f33 {
+  margin-bottom: 32rpx;
+}
+.settings-group .group-title.data-v-9bc93f33 {
+  font-size: 28rpx;
+  color: #64748B;
+  padding: 0 32rpx;
+  margin-bottom: 12rpx;
+}
+.settings-group .settings-list.data-v-9bc93f33 {
+  background: #FFFFFF;
+  padding: 0 32rpx;
 }
 .setting-item.data-v-9bc93f33 {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 24rpx 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-.left.data-v-9bc93f33 {
+.setting-item.no-border.data-v-9bc93f33 {
+  border-bottom: none;
+}
+.setting-item .item-left.data-v-9bc93f33 {
   display: flex;
   align-items: center;
 }
-.icon.data-v-9bc93f33 {
-  width: 44rpx;
-  height: 44rpx;
+.setting-item .item-left .icon-wrapper.data-v-9bc93f33 {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 20rpx;
 }
-.label.data-v-9bc93f33 {
-  font-size: 30rpx;
-  color: #333;
+.setting-item .item-left .icon-wrapper .custom-icon.data-v-9bc93f33 {
+  width: 24rpx;
+  height: 24rpx;
 }
-.right.data-v-9bc93f33 {
-  display: flex;
-  align-items: center;
-}
-
-/* 自定义开关 */
-.custom-switch.data-v-9bc93f33 {
-  width: 92rpx;
-  height: 48rpx;
-  border-radius: 48rpx;
-  background-color: #ccc;
-  position: relative;
-  transition: background-color 0.3s;
-}
-.custom-switch.active.data-v-9bc93f33 {
-  background-color: #4A90E2;
-}
-.custom-switch .circle.data-v-9bc93f33 {
-  width: 42rpx;
-  height: 42rpx;
-  border-radius: 50%;
-  background-color: #fff;
-  position: absolute;
-  top: 3rpx;
-  left: 3rpx;
-  transition: left 0.3s;
-}
-.custom-switch.active .circle.data-v-9bc93f33 {
-  left: 47rpx;
-}
-
-/* 文字选择 */
-.text-setting.data-v-9bc93f33 {
-  display: flex;
-  align-items: center;
+.setting-item .item-left .label.data-v-9bc93f33 {
   font-size: 28rpx;
-  color: #666;
+  color: #1E293B;
 }
-.text-setting .value.data-v-9bc93f33 {
-  margin-right: 10rpx;
+.setting-item .item-right .text-value.data-v-9bc93f33 {
+  display: flex;
+  align-items: center;
+}
+.setting-item .item-right .text-value text.data-v-9bc93f33 {
+  font-size: 26rpx;
+  color: #64748B;
+  margin-right: 8rpx;
+}
+.setting-item .item-right .slider-wrapper.data-v-9bc93f33 {
+  width: 300rpx;
+  display: flex;
+  align-items: center;
+}
+.setting-item .item-right .slider-wrapper .slider-value.data-v-9bc93f33 {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-left: 16rpx;
+  min-width: 60rpx;
 }
 
-/* 滑块 */
-.slider-setting.data-v-9bc93f33 {
-  width: 300rpx;
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+.settings-container.data-v-9bc93f33 {
+    background: #1A1A1A;
+}
+.app-card.data-v-9bc93f33 {
+    background: #262626;
+    box-shadow: none;
+}
+.app-card .app-details .app-name.data-v-9bc93f33 {
+    color: #E5E7EB;
+}
+.app-card .app-details .version.data-v-9bc93f33 {
+    color: #9CA3AF;
+}
+.settings-group .settings-list.data-v-9bc93f33 {
+    background: #262626;
+}
+.setting-item.data-v-9bc93f33 {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+.setting-item .item-left .label.data-v-9bc93f33 {
+    color: #E5E7EB;
+}
+.setting-item .item-right .text-value text.data-v-9bc93f33 {
+    color: #9CA3AF;
+}
+.setting-item .item-right .slider-value.data-v-9bc93f33 {
+    color: #9CA3AF;
+}
 }

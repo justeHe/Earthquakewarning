@@ -1,85 +1,116 @@
-
-.guide-tab.data-v-2fd15fc7 {
-  font-family: 'Arial', sans-serif;
-  margin: 20px;
-  background: #f4f6f9;
-  padding: 20px;
-  border-radius: 8px;
+/* 水平间距 */
+/* 水平间距 */
+.guide-container.data-v-2fd15fc7 {
+  min-height: 100vh;
+  background: #F8FAFC;
+  padding-bottom: env(safe-area-inset-bottom);
   position: relative;
 }
-
-/* 应急中心按钮置顶 */
-.emergency-float-btn.data-v-2fd15fc7 {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 99;
-  background: #e74c3c;
-  color: white;
+.emergency-button.data-v-2fd15fc7 {
+  position: fixed;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #EF4444;
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
   display: flex;
   align-items: center;
-  padding: 10px 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(239, 68, 68, 0.2);
+  z-index: 100;
 }
-.emergency-float-btn .btn-text.data-v-2fd15fc7 {
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 8px;
-}
-.guide-category.data-v-2fd15fc7 {
-  margin-bottom: 25px;
-}
-.guide-title.data-v-2fd15fc7 {
-  font-size: 1.2rem;
+.emergency-button .button-text.data-v-2fd15fc7 {
+  color: #FFFFFF;
+  font-size: 32rpx;
   font-weight: 600;
-  margin-bottom: 12px;
-  color: #fff;
+}
+.animation-section.data-v-2fd15fc7 {
+  background: #FFFFFF;
+  padding: 32rpx;
+  padding-top: 100rpx;
   display: flex;
-  align-items: center;
-  background: linear-gradient(90deg, #3498db, #2980b9);
-  padding: 8px 15px;
-  border-radius: 5px;
-}
-.guide-item.data-v-2fd15fc7 {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.guide-item.data-v-2fd15fc7:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-.guide-item-title.data-v-2fd15fc7 {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 8px;
-  color: #34495e;
-  display: flex;
+  flex-direction: column;
   align-items: center;
 }
-.guide-item-desc.data-v-2fd15fc7 {
-  font-size: 0.95rem;
-  color: #7f8c8d;
+.animation-section .guide-gif.data-v-2fd15fc7 {
+  width: 100%;
+  height: 300rpx;
+  margin-bottom: 16rpx;
 }
-.guide-item-desc.data-v-2fd15fc7::before {
-  content: "→ ";
-  color: #e74c3c;
-  margin-right: 5px;
+.animation-section .animation-tip.data-v-2fd15fc7 {
+  font-size: 28rpx;
+  color: #64748B;
+  text-align: center;
 }
-@media (max-width: 768px) {
-.guide-tab.data-v-2fd15fc7 {
-    margin: 10px;
+.guide-content.data-v-2fd15fc7 {
+  padding: 20rpx;
 }
-.guide-title.data-v-2fd15fc7 {
-    font-size: 1rem;
+.guide-section.data-v-2fd15fc7 {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
 }
-.guide-item.data-v-2fd15fc7 {
-    padding: 15px;
+.guide-section .section-header.data-v-2fd15fc7 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.guide-section .section-header .section-title.data-v-2fd15fc7 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1E293B;
+  margin-left: 12rpx;
+}
+.guide-section .section-header .custom-icon.data-v-2fd15fc7 {
+  width: 48rpx;
+  height: 48rpx;
+  color: #F59E0B;
+}
+.steps-list .step-item.data-v-2fd15fc7 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.steps-list .step-item.data-v-2fd15fc7:last-child {
+  margin-bottom: 0;
+}
+.steps-list .step-item .step-number.data-v-2fd15fc7 {
+  width: 40rpx;
+  height: 40rpx;
+  background: #3B82F6;
+  color: #FFFFFF;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+.steps-list .step-item .step-text.data-v-2fd15fc7 {
+  font-size: 28rpx;
+  color: #334155;
+  line-height: 1.5;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+.guide-container.data-v-2fd15fc7 {
+    background: #1A1A1A;
+}
+.animation-section.data-v-2fd15fc7,
+.guide-section.data-v-2fd15fc7 {
+    background: #262626;
+}
+.animation-section .animation-tip.data-v-2fd15fc7 {
+    color: #9CA3AF;
+}
+.section-header .section-title.data-v-2fd15fc7 {
+    color: #E5E7EB;
+}
+.steps-list .step-item .step-text.data-v-2fd15fc7 {
+    color: #D1D5DB;
 }
 }
