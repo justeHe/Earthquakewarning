@@ -67,18 +67,28 @@
             <!-- 滑块类型 -->
             <template v-else-if="setting.type === 'slider'">
               <view class="slider-wrapper">
-                <slider
-                  :value="setting.value"
-                  :min="setting.min"
-                  :max="setting.max"
-                  :step="setting.step || 1"
-                  activeColor="#3B82F6"
-                  backgroundColor="#E2E8F0"
-                  block-color="#FFFFFF"
-                  block-size="24"
-                  @change="(e) => handleSliderChange(setting, e)"
-                />
-                <text class="slider-value">{{ setting.value }}{{ setting.unit || '%' }}</text>
+                <view class="slider-header">
+                  <text class="slider-value">{{ setting.value }}{{ setting.unit || '%' }}</text>
+                </view>
+                <view class="slider-container">
+                  <slider
+                    class="slider"
+                    :value="setting.value"
+                    :min="setting.min"
+                    :max="setting.max"
+                    :step="setting.step || 1"
+                    activeColor="#3B82F6"
+                    backgroundColor="#E2E8F0"
+                    block-color="#FFFFFF"
+                    block-size="24"
+                    @change="(e) => handleSliderChange(setting, e)"
+                  />
+                  <view class="slider-marks">
+                    <text>0</text>
+                    <text>50</text>
+                    <text>100</text>
+                  </view>
+                </view>
               </view>
             </template>
           </view>
@@ -89,7 +99,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 
 // 设置分组数据
 const settingsGroups = reactive([
@@ -105,10 +115,30 @@ const settingsGroups = reactive([
         iconColor: '#3B82F6'
       },
       { 
+        name: '声音提醒', 
+        icon: 'sound', 
+        type: 'toggle', 
+        value: true,
+        iconBg: '#F0FDF4',
+        iconColor: '#22C55E'
+      },
+      { 
+        name: '声音大小', 
+        icon: 'sound', 
+        type: 'slider', 
+        value: 80,
+        min: 0,
+        max: 100,
+        step: 1,
+        unit: '%',
+        iconBg: '#FEF3C7',
+        iconColor: '#F59E0B'
+      },
+      { 
         name: '震动提醒', 
         customIcon: 'shake.svg', 
         type: 'toggle', 
-        value: false,
+        value: true,
         iconBg: '#F0FDF4',
         iconColor: '#22C55E'
       },
@@ -147,14 +177,14 @@ const settingsGroups = reactive([
         iconBg: '#F0FDF4',
         iconColor: '#22C55E'
       },
-      { 
-        name: '深色模式', 
-        icon: 'eye', 
-        type: 'toggle', 
-        value: false,
-        iconBg: '#FEF3C7',
-        iconColor: '#F59E0B'
-      },
+      // { 
+      //   name: '深色模式', 
+      //   icon: 'eye', 
+      //   type: 'toggle', 
+      //   value: false,
+      //   iconBg: '#FEF3C7',
+      //   iconColor: '#F59E0B'
+      // },
       { 
         name: '位置信息', 
         icon: 'location', 
@@ -204,6 +234,31 @@ const settingsGroups = reactive([
   }
 ])
 
+// 从本地存储加载设置
+const loadSettings = () => {
+  try {
+    for (const group of settingsGroups) {
+      for (const setting of group.items) {
+        const storedValue = uni.getStorageSync(`setting_${setting.name}`)
+        if (storedValue !== '') {
+          setting.value = storedValue
+        }
+      }
+    }
+  } catch (error) {
+    console.error('加载设置失败:', error)
+  }
+}
+
+// 保存设置到本地存储
+const saveSettings = (settingName, value) => {
+  try {
+    uni.setStorageSync(`setting_${settingName}`, value)
+  } catch (error) {
+    console.error('保存设置失败:', error)
+  }
+}
+
 // 处理设置项点击
 const handleSettingClick = (setting) => {
   if (setting.type === 'text') {
@@ -235,38 +290,91 @@ const handleSettingClick = (setting) => {
 
 // 处理开关切换
 const handleToggle = (setting, event) => {
-  setting.value = event.detail.value
-  if (setting.name === '深色模式') {
-    // TODO: 实现深色模式切换逻辑
-    uni.showToast({
-      title: event.detail.value ? '已开启深色模式' : '已关闭深色模式',
-      icon: 'none'
-    })
-  } else if (setting.name === '位置信息') {
-    if (event.detail.value) {
-      uni.getLocation({
-        type: 'gcj02',
-        success: () => {
-          uni.showToast({
-            title: '已开启位置权限',
-            icon: 'success'
-          })
-        },
-        fail: () => {
-          setting.value = false
-          uni.showToast({
-            title: '请在系统设置中开启位置权限',
-            icon: 'none'
-          })
-        }
+  const value = event.detail.value
+  setting.value = value
+  saveSettings(setting.name, value)
+
+  switch (setting.name) {
+    case '震动提醒':
+      uni.setStorageSync('vibrationEnabled', value)
+      uni.showToast({
+        title: value ? '已开启震动提醒' : '已关闭震动提醒',
+        icon: 'none'
       })
-    }
+      break
+      
+    case '声音提醒':
+      uni.setStorageSync('soundEnabled', value)
+      uni.showToast({
+        title: value ? '已开启声音提醒' : '已关闭声音提醒',
+        icon: 'none'
+      })
+      break
+      
+    case '预警通知':
+      uni.setStorageSync('notificationEnabled', value)
+      if (value) {
+        uni.requestSubscribeMessage({
+          tmplIds: ['earthquake_warning_template'], // 替换为实际的模板ID
+          success: (res) => {
+            console.log('订阅消息成功', res)
+          },
+          fail: (err) => {
+            console.error('订阅消息失败', err)
+            setting.value = false
+            saveSettings(setting.name, false)
+          }
+        })
+      }
+      break
+      
+    case '位置信息':
+      if (value) {
+        uni.getLocation({
+          type: 'gcj02',
+          success: () => {
+            uni.showToast({
+              title: '已开启位置权限',
+              icon: 'success'
+            })
+            uni.setStorageSync('locationEnabled', true)
+          },
+          fail: () => {
+            setting.value = false
+            saveSettings(setting.name, false)
+            uni.showToast({
+              title: '请在系统设置中开启位置权限',
+              icon: 'none'
+            })
+          }
+        })
+      } else {
+        uni.setStorageSync('locationEnabled', false)
+      }
+      break
   }
 }
 
 // 处理滑块变化
 const handleSliderChange = (setting, event) => {
-  setting.value = event.detail.value
+  const value = event.detail.value
+  setting.value = value
+  saveSettings(setting.name, value)
+  
+  switch (setting.name) {
+    case '震动强度':
+      uni.setStorageSync('vibrationIntensity', value)
+      break
+    case '声音大小': {
+      uni.setStorageSync('soundVolume', value)
+      // 如果有背景音乐实例，直接调整音量
+      const bgAudio = uni.getBackgroundAudioManager()
+      if (bgAudio) {
+        bgAudio.volume = value / 100
+      }
+      break
+    }
+  }
 }
 
 // 处理清除缓存
@@ -305,6 +413,11 @@ const handleCheckUpdate = () => {
     })
   }, 1500)
 }
+
+// 组件挂载时加载设置
+onMounted(() => {
+  loadSettings()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -419,13 +532,48 @@ const handleCheckUpdate = () => {
     .slider-wrapper {
       width: 300rpx;
       display: flex;
-      align-items: center;
-
-      .slider-value {
-        font-size: 24rpx;
-        color: #64748B;
-        margin-left: 16rpx;
-        min-width: 60rpx;
+      flex-direction: column;
+      
+      .slider-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8rpx;
+        
+        .slider-value {
+          font-size: 24rpx;
+          color: #64748B;
+          min-width: 60rpx;
+          text-align: right;
+        }
+      }
+      
+      .slider-container {
+        position: relative;
+        height: 40rpx;
+        display: flex;
+        align-items: center;
+        
+        .slider {
+          width: 100%;
+          margin: 0;
+        }
+        
+        .slider-marks {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -24rpx;
+          display: flex;
+          justify-content: space-between;
+          padding: 0 4rpx;
+          
+          text {
+            font-size: 20rpx;
+            color: #94A3B8;
+            transform: scale(0.8);
+          }
+        }
       }
     }
   }
@@ -474,8 +622,20 @@ const handleCheckUpdate = () => {
         }
       }
 
-      .slider-value {
-        color: #9CA3AF;
+      .slider-wrapper {
+        .slider-header {
+          .slider-value {
+            color: #94A3B8;
+          }
+        }
+        
+        .slider-container {
+          .slider-marks {
+            text {
+              color: #64748B;
+            }
+          }
+        }
       }
     }
   }

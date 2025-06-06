@@ -70,13 +70,6 @@
 		}
 	},
 	{
-		"path" : "Visualization/Visualization",
-		"style" : 
-		{
-			"navigationBarTitleText" : ""
-		}
-	},
-	{
 		"path" : "pages/Emergenciecenter/Emergenciecenter",
 		"style" : 
 		{
@@ -125,10 +118,29 @@
 		]
 	},
 	{
+		"path" : "pages/EarthquakeMap/EarthquakeMap",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		},
+		"requiredPrivateInfos": [
+		  "getLocation",
+		  "onLocationChange",
+		  "chooseLocation"
+		]
+	},
+	{
 		"path" : "pages/Disaster-Report/Disaster-Report",
 		"style" : 
 		{
 			"navigationBarTitleText" : ""
+		}
+	},
+	{
+		"path": "pages/SeismicData/SeismicData",
+		"style": {
+			"navigationBarTitleText": "地震数据分析",
+			"enablePullDownRefresh": true
 		}
 	}],
 	"globalStyle": {

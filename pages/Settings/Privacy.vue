@@ -2,7 +2,7 @@
     <view class="privacy-page">
       <view class="header">
         <text class="title">隐私政策</text>
-        <text class="update-time">更新时间：2024年3月</text>
+        <text class="update-time">更新时间：2025年6月</text>
       </view>
   
       <scroll-view class="content" scroll-y>
@@ -109,7 +109,7 @@
           <text class="section-title">联系我们</text>
           <text class="section-text">如果您对我们的隐私政策有任何疑问，请通过以下方式联系我们：</text>
           <view class="contact-info">
-            <text>邮箱：privacy@example.com</text>
+            <text>邮箱：justebe@163.com</text>
             <text>电话：400-XXX-XXXX</text>
           </view>
         </view>

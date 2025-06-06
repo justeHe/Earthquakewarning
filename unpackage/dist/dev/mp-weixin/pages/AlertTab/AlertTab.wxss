@@ -73,6 +73,9 @@
 }
 .location-text.data-v-f652d009 {
   flex: 1;
+  font-size: 14px;
+  color: #1565C0;
+  font-weight: 500;
 }
 .location-name.data-v-f652d009 {
   font-weight: 600;
@@ -110,6 +113,25 @@
   margin: 25px 0 15px;
   padding-bottom: 10px;
   border-bottom: 2px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.data-analysis-btn.data-v-f652d009 {
+  display: flex;
+  align-items: center;
+  background: #3B82F6;
+  padding: 6rpx 16rpx;
+  border-radius: 24rpx;
+  gap: 8rpx;
+}
+.btn-text.data-v-f652d009 {
+  color: #FFFFFF;
+  font-size: 24rpx;
+  font-weight: normal;
+}
+.btn-icon.data-v-f652d009 {
+  font-size: 24rpx;
 }
 .quake-card.data-v-f652d009 {
   background: white;
@@ -131,10 +153,10 @@
 .quake-magnitude.data-v-f652d009 {
   font-weight: 700;
   font-size: 1.3rem;
-  color: #e74c3c;
+  color: #C41E3A;
 }
 .quake-time.data-v-f652d009 {
-  color: #7f8c8d;
+  color: #4B5563;
   font-size: 0.85rem;
 }
 .quake-details.data-v-f652d009 {
@@ -157,10 +179,10 @@
 .quake-warning.data-v-f652d009 {
   display: flex;
   align-items: center;
-  color: #f39c12;
+  color: #B45309;
   font-size: 0.9rem;
   padding: 8px 12px;
-  background: #fffbe6;
+  background: #FEF3C7;
   border-radius: 6px;
 }
 .warning-icon.data-v-f652d009 {
@@ -236,9 +258,46 @@
 }
 .location-text.data-v-f652d009 {
   font-size: 14px;
-  color: #1890ff;
+  color: #1565C0;
   font-weight: 500;
 }
-.location-btn.data-v-f652d009:active {
+.button-hover.data-v-f652d009 {
   background-color: #F5F5F5;
+  opacity: 0.8;
+}
+.quake-coords.data-v-f652d009 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #64748B;
+  margin-top: 16rpx;
+}
+.view-details-wrapper.data-v-f652d009 {
+  padding: 16rpx;
+  margin: -16rpx;
+}
+.view-details.data-v-f652d009 {
+  color: #1E40AF;
+  font-size: 24rpx;
+}
+
+/* 暗黑模式下的颜色调整 */
+@media (prefers-color-scheme: dark) {
+.location-text.data-v-f652d009 {
+    color: #60A5FA;
+}
+.quake-magnitude.data-v-f652d009 {
+    color: #F87171;
+}
+.quake-time.data-v-f652d009 {
+    color: #9CA3AF;
+}
+.quake-warning.data-v-f652d009 {
+    color: #FCD34D;
+    background: rgba(254, 243, 199, 0.1);
+}
+.view-details.data-v-f652d009 {
+    color: #60A5FA;
+}
 }

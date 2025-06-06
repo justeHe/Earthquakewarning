@@ -1,0 +1,252 @@
+/* 水平间距 */
+/* 水平间距 */
+.seismic-data.data-v-2111ba09 {
+  min-height: 100vh;
+  background: #F8FAFC;
+  padding: 32rpx;
+}
+.nav-header.data-v-2111ba09 {
+  margin-bottom: 32rpx;
+}
+.nav-header .title.data-v-2111ba09 {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 24rpx;
+}
+.nav-header .time-selector.data-v-2111ba09 {
+  display: flex;
+  gap: 16rpx;
+}
+.nav-header .time-selector .time-option.data-v-2111ba09 {
+  padding: 12rpx 24rpx;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  color: #64748B;
+}
+.nav-header .time-selector .time-option.active.data-v-2111ba09 {
+  background: #3B82F6;
+  color: #FFFFFF;
+}
+.section.data-v-2111ba09 {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+.section .section-header.data-v-2111ba09 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+.section .section-header .section-title.data-v-2111ba09 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1E293B;
+}
+.seismic-graph .graph-legend.data-v-2111ba09 {
+  display: flex;
+  gap: 16rpx;
+}
+.seismic-graph .graph-legend .legend-item.data-v-2111ba09 {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.seismic-graph .graph-legend .legend-item .color-dot.data-v-2111ba09 {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+}
+.seismic-graph .graph-legend .legend-item .color-dot.p-wave.data-v-2111ba09 {
+  background: #3B82F6;
+}
+.seismic-graph .graph-legend .legend-item .color-dot.s-wave.data-v-2111ba09 {
+  background: #EF4444;
+}
+.seismic-graph .graph-legend .legend-item text.data-v-2111ba09 {
+  font-size: 24rpx;
+  color: #64748B;
+}
+.seismic-graph .graph-container.data-v-2111ba09 {
+  position: relative;
+  height: 400rpx;
+}
+.seismic-graph .graph-container .wave-canvas.data-v-2111ba09 {
+  width: 100%;
+  height: 100%;
+}
+.seismic-graph .graph-container .axis-labels.data-v-2111ba09 {
+  position: absolute;
+  left: -24rpx;
+  top: 50%;
+  transform: rotate(-90deg);
+  transform-origin: left center;
+}
+.seismic-graph .graph-container .axis-labels text.data-v-2111ba09 {
+  font-size: 24rpx;
+  color: #64748B;
+}
+.seismic-graph .graph-container .time-axis.data-v-2111ba09 {
+  text-align: center;
+  margin-top: 8rpx;
+}
+.seismic-graph .graph-container .time-axis text.data-v-2111ba09 {
+  font-size: 24rpx;
+  color: #64748B;
+}
+.aftershock-timeline .magnitude-filter.data-v-2111ba09 {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.aftershock-timeline .magnitude-filter text.data-v-2111ba09 {
+  font-size: 26rpx;
+  color: #64748B;
+}
+.aftershock-timeline .magnitude-filter .selected-magnitude.data-v-2111ba09 {
+  color: #3B82F6;
+  font-weight: 500;
+}
+.aftershock-timeline .timeline-container.data-v-2111ba09 {
+  height: 200rpx;
+  position: relative;
+}
+.aftershock-timeline .timeline-container .timeline.data-v-2111ba09 {
+  position: relative;
+  height: 100%;
+  width: 200%;
+}
+.aftershock-timeline .timeline-container .timeline.data-v-2111ba09::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2rpx;
+  background: #E2E8F0;
+}
+.aftershock-timeline .timeline-container .timeline-event.data-v-2111ba09 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.aftershock-timeline .timeline-container .timeline-event .event-dot.data-v-2111ba09 {
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.aftershock-timeline .timeline-container .timeline-event .event-info.data-v-2111ba09 {
+  position: absolute;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+.aftershock-timeline .timeline-container .timeline-event .event-info .magnitude.data-v-2111ba09 {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #1E293B;
+  display: block;
+}
+.aftershock-timeline .timeline-container .timeline-event .event-info .time.data-v-2111ba09 {
+  font-size: 22rpx;
+  color: #64748B;
+}
+.shaking-prediction .confidence-indicator.data-v-2111ba09 {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.shaking-prediction .confidence-indicator .confidence-label.data-v-2111ba09 {
+  font-size: 26rpx;
+  color: #64748B;
+}
+.shaking-prediction .confidence-indicator .confidence-value.data-v-2111ba09 {
+  font-size: 26rpx;
+  color: #22C55E;
+  font-weight: 500;
+}
+.shaking-prediction .prediction-map.data-v-2111ba09 {
+  height: 500rpx;
+  position: relative;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+.shaking-prediction .prediction-map .map.data-v-2111ba09 {
+  width: 100%;
+  height: 100%;
+}
+.shaking-prediction .prediction-map .intensity-legend.data-v-2111ba09 {
+  position: absolute;
+  right: 24rpx;
+  bottom: 24rpx;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 16rpx;
+  border-radius: 8rpx;
+}
+.shaking-prediction .prediction-map .intensity-legend .legend-title.data-v-2111ba09 {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-bottom: 8rpx;
+}
+.shaking-prediction .prediction-map .intensity-legend .intensity-level.data-v-2111ba09 {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-top: 4rpx;
+}
+.shaking-prediction .prediction-map .intensity-legend .intensity-level .color-block.data-v-2111ba09 {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 4rpx;
+}
+.shaking-prediction .prediction-map .intensity-legend .intensity-level .level-text.data-v-2111ba09 {
+  font-size: 22rpx;
+  color: #1E293B;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+.seismic-data.data-v-2111ba09 {
+    background: #1A1A1A;
+}
+.section.data-v-2111ba09 {
+    background: #262626;
+}
+.section .section-title.data-v-2111ba09 {
+    color: #E5E7EB;
+}
+.nav-header .title.data-v-2111ba09 {
+    color: #E5E7EB;
+}
+.nav-header .time-option.data-v-2111ba09 {
+    background: #333333;
+    color: #94A3B8;
+}
+.nav-header .time-option.active.data-v-2111ba09 {
+    background: #3B82F6;
+    color: #FFFFFF;
+}
+.timeline.data-v-2111ba09::after {
+    background: #374151;
+}
+.event-info .magnitude.data-v-2111ba09 {
+    color: #E5E7EB !important;
+}
+.event-info .time.data-v-2111ba09 {
+    color: #94A3B8 !important;
+}
+.intensity-legend.data-v-2111ba09 {
+    background: rgba(38, 38, 38, 0.9) !important;
+}
+.intensity-legend .legend-title.data-v-2111ba09 {
+    color: #94A3B8 !important;
+}
+.intensity-legend .level-text.data-v-2111ba09 {
+    color: #E5E7EB !important;
+}
+}

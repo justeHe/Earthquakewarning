@@ -205,3 +205,15 @@ to { transform: translate(-50%, -80%) rotate(720deg);
     justify-content: center;
 }
 }
+
+/* 振动按钮样式 */
+.vibrate-btn.data-v-838185bf {
+  background: rgba(255, 255, 255, 0.1);
+}
+.vibrate-btn.data-v-838185bf:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.icon-vibration.data-v-838185bf,
+.icon-vibration-off.data-v-838185bf {
+  font-size: 1.2rem;
+}

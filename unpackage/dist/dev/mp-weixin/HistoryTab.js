@@ -28,16 +28,15 @@ const _sfc_main = {
     const goToTestPage = () => {
       common_vendor.index.navigateTo({
         url: "/pages/EmergencyAlert/EmergencyAlert"
-        // 替换为你的测试页面路径
       });
     };
     const goToShelter = () => {
       common_vendor.index.navigateTo({
         url: "/pages/Disaster-Report/Disaster-Report"
-        // 替换为你的测试页面路径
       });
     };
     const loadData = async () => {
+      var _a;
       const now = Date.now();
       if (now - lastFetchTime.value < CACHE_TIME && historyItems.value.length > 0) {
         return;
@@ -60,7 +59,7 @@ const _sfc_main = {
           throw new Error(`请求失败，状态码: ${res.statusCode}`);
         }
         let rawData = [];
-        if (res.data && typeof res.data === "object") {
+        if (((_a = res == null ? void 0 : res.data) == null ? void 0 : _a.constructor) === Object) {
           rawData = Object.keys(res.data).map((key) => {
             return {
               No: key,
@@ -77,7 +76,7 @@ const _sfc_main = {
         lastFetchTime.value = now;
       } catch (err) {
         error.value = err.errMsg || err.message || "获取地震数据失败";
-        common_vendor.index.__f__("error", "at pages/HistoryTab/HistoryTab.vue:156", "地震数据加载错误:", err);
+        common_vendor.index.__f__("error", "at pages/HistoryTab/HistoryTab.vue:162", "地震数据加载错误:", err);
         if (historyItems.value.length > 0) {
           error.value += " (显示缓存数据)";
         }
@@ -86,20 +85,24 @@ const _sfc_main = {
       }
     };
     const processData = (data) => {
-      return data.filter((item) => item && item.time && item.magnitude).sort((a, b) => new Date(b.time) - new Date(a.time)).map((item) => ({
+      const processedData = data.filter((item) => item && item.time && item.magnitude).sort((a, b) => new Date(b.time) - new Date(a.time)).map((item) => ({
         id: item.EventID || `eq-${item.time}-${item.magnitude}-${Math.random().toString(36).substr(2, 6)}`,
         type: item.type || "reviewed",
-        magnitude: parseFloat(item.magnitude).toFixed(1),
+        magnitude: Number.parseFloat(item.magnitude).toFixed(1),
         title: formatLocation(item.location),
         status: item.type === "automatic" ? "自动预警" : "正式测定",
         time: formatTime(item.time),
-        depth: item.depth ? `${parseFloat(item.depth).toFixed(1)}` : "未知",
+        depth: item.depth ? `${Number.parseFloat(item.depth).toFixed(1)}` : "未知",
         intensity: item.intensity || "未知",
         epicenter: item.location,
         description: `震源深度${item.depth || "未知"}千米，坐标: ${item.latitude || "未知"}, ${item.longitude || "未知"}`,
         severityClass: getSeverityClass(item.magnitude),
-        reportTime: item.ReportTime ? formatTime(item.ReportTime) : null
+        reportTime: item.ReportTime ? formatTime(item.ReportTime) : null,
+        latitude: Number.parseFloat(item.latitude) || 0,
+        longitude: Number.parseFloat(item.longitude) || 0
       }));
+      common_vendor.index.setStorageSync("earthquakeHistory", processedData);
+      return processedData;
     };
     const formatLocation = (location) => {
       if (!location)
@@ -109,14 +112,14 @@ const _sfc_main = {
     const formatTime = (timeString) => {
       try {
         const date = new Date(timeString);
-        return isNaN(date.getTime()) ? timeString : `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+        return Number.isNaN(date.getTime()) ? timeString : `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
       } catch {
         return timeString;
       }
     };
     const pad = (n) => n.toString().padStart(2, "0");
     const getSeverityClass = (magnitude) => {
-      const value = parseFloat(magnitude) || 0;
+      const value = Number.parseFloat(magnitude) || 0;
       if (value < 3.5)
         return "minor";
       if (value < 4.5)
@@ -140,20 +143,28 @@ const _sfc_main = {
     const retryLoading = () => {
       loadData();
     };
+    const viewEarthquakeMap = () => {
+      if (historyItems.value.length > 0) {
+        common_vendor.index.setStorageSync("earthquakeHistory", historyItems.value);
+      }
+      common_vendor.index.navigateTo({
+        url: "/pages/EarthquakeMap/EarthquakeMap"
+      });
+    };
     common_vendor.onMounted(() => {
       loadData().then(() => {
         historyItems.value.unshift({
           id: "fake-test-001",
           type: "automatic",
-          magnitude: "6.5",
-          title: "测试地震·东京湾",
+          magnitude: "4.0",
+          title: "测试地震·都江堰",
           status: "自动预警",
           time: formatTime((/* @__PURE__ */ new Date()).toISOString()),
-          depth: "10.0",
-          intensity: "VII",
-          epicenter: "东京湾附近",
-          description: "测试数据：深度10km，震中坐标 35.0, 140.0",
-          severityClass: getSeverityClass(6.5),
+          depth: "5.0",
+          intensity: "V",
+          epicenter: '"四川成都市都江堰”',
+          description: "测试数据：深度5km，震中坐标 30.88, 103.49",
+          severityClass: getSeverityClass(4),
           reportTime: formatTime((/* @__PURE__ */ new Date()).toISOString())
         });
       });
@@ -175,29 +186,30 @@ const _sfc_main = {
             d: common_vendor.o(($event) => setFilter(filter.value), filter.value)
           };
         }),
-        b: loading.value
+        b: common_vendor.o(viewEarthquakeMap),
+        c: loading.value
       }, loading.value ? {
-        c: common_vendor.p({
+        d: common_vendor.p({
           status: "loading"
         })
       } : error.value ? {
-        e: common_vendor.p({
+        f: common_vendor.p({
           type: "info",
           size: "24",
           color: "#e74c3c"
         }),
-        f: common_vendor.t(error.value),
-        g: common_vendor.o(retryLoading)
+        g: common_vendor.t(error.value),
+        h: common_vendor.o(retryLoading)
       } : common_vendor.e({
-        h: filteredItems.value.length === 0
+        i: filteredItems.value.length === 0
       }, filteredItems.value.length === 0 ? {
-        i: common_vendor.p({
+        j: common_vendor.p({
           type: "folder",
           size: "24",
           color: "#95a5a6"
         })
       } : {}, {
-        j: common_vendor.f(filteredItems.value, (item, k0, i0) => {
+        k: common_vendor.f(filteredItems.value, (item, k0, i0) => {
           return common_vendor.e({
             a: common_vendor.t(item.magnitude),
             b: common_vendor.n(item.severityClass),
@@ -236,18 +248,18 @@ const _sfc_main = {
             v: item.id
           });
         }),
-        k: common_vendor.p({
+        l: common_vendor.p({
           type: "calendar",
           size: "14",
           color: "#666"
         }),
-        l: common_vendor.p({
+        m: common_vendor.p({
           type: "location",
           size: "14",
           color: "#666"
         })
       }), {
-        d: error.value
+        e: error.value
       });
     };
   }

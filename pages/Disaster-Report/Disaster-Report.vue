@@ -11,7 +11,7 @@
         style="width: 100%; height: 480rpx;"
         @markertap="handleMarkerTap"
       >
-        <cover-view class="map-toolbar">
+        <!-- <cover-view class="map-toolbar">
           <cover-button class="map-btn" @tap="openHeatmap">
             <image src="/static/icons/fire.svg" class="btn-icon" />
             热力图
@@ -20,7 +20,7 @@
             <image src="/static/icons/layers.svg" class="btn-icon" />
             地形图
           </cover-button>
-        </cover-view>
+        </cover-view> -->
       </map>
     </view>
 
@@ -107,6 +107,52 @@
       </view>
     </view>
 
+    <!-- 讨论区 -->
+    <view class="section discussion-section">
+      <view class="section-header">
+        <text class="title">讨论区</text>
+        <view class="badge">
+          <text class="badge-text">{{ discussions.length }}条讨论</text>
+        </view>
+      </view>
+      
+      <!-- 讨论列表 -->
+      <view class="discussion-list">
+        <view 
+          v-for="(item, index) in discussions" 
+          :key="index"
+          class="discussion-item"
+        >
+          <view class="discussion-header">
+            <view class="user-info">
+              <image src="/static/icons/anonymous.svg" class="avatar" />
+              <text class="username">匿名用户</text>
+            </view>
+            <text class="time">{{ item.time }}</text>
+          </view>
+          <view class="discussion-content">
+            <text class="text">{{ item.content }}</text>
+            <view v-if="item.images && item.images.length" class="image-grid">
+              <image 
+                v-for="(img, imgIndex) in item.images" 
+                :key="imgIndex"
+                :src="img"
+                mode="aspectFill"
+                class="discussion-image"
+                @tap="previewDiscussionImage(item.images, imgIndex)"
+              />
+            </view>
+          </view>
+          <view class="discussion-footer">
+            <view class="location-info">
+              <image src="/static/icons/location.svg" class="location-icon" />
+              <text class="location-text">{{ item.location || '位置未知' }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
     <!-- 用户提交入口 -->
     <view class="submit-fab" @tap="openSubmission" @touchstart="handleFabTouch" @touchend="handleFabTouchEnd" :style="{ transform: `scale(${fabScale})` }">
       <image src="/static/icons/report.svg" class="fab-icon" />
@@ -122,12 +168,22 @@
           placeholder-class="placeholder"
           maxlength="300"
         />
+        <view class="image-preview" v-if="userReport.images.length">
+          <view 
+            v-for="(img, index) in userReport.images" 
+            :key="index"
+            class="preview-item"
+          >
+            <image :src="img" mode="aspectFill" class="preview-image" />
+            <view class="remove-btn" @tap="removeImage(index)">×</view>
+          </view>
+        </view>
         <view class="form-controls">
           <button @tap="addPhoto" class="photo-button">
             <image src="/static/icons/camera.svg" class="button-icon" />
             添加照片
           </button>
-          <button @tap="submitReport" class="submit-button">提交报告</button>
+          <button @tap="submitReport" class="submit-button" :disabled="!userReport.content">提交报告</button>
         </view>
       </view>
     </uni-popup>
@@ -135,17 +191,17 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 
 // 模拟数据
-const mapCenter = ref({ latitude: 35.6895, longitude: 139.6917 })
+const mapCenter = ref({ latitude: 30.88, longitude: 103.49 })
 
 const impactMarkers = ref([
   {
     id: 1,
-    latitude: 35.6895,
-    longitude: 139.6917,
+    latitude: 30.88,
+    longitude: 103.49,
     iconPath: '/static/location.png',
     width: 40,
     height: 40,
@@ -156,8 +212,8 @@ const impactMarkers = ref([
 const impactAreas = ref([
   {
     points: [
-      { latitude: 35.6895, longitude: 139.6917 },
-      { latitude: 35.7000, longitude: 139.7000 }
+      { latitude: 30.88, longitude: 103.49 },
+      { latitude: 30.89, longitude: 103.50 }
     ],
     color: '#FF000033',
     width: 2
@@ -165,7 +221,7 @@ const impactAreas = ref([
 ])
 
 const stats = ref([
-  { id: 1, icon: '/static/icons/building.svg', value: '5.8级', label: '最大震级' },
+  { id: 1, icon: '/static/icons/building.svg', value: '4.0级', label: '最大震级' },
   { id: 2, icon: '/static/icons/alert.svg', value: '12k', label: '受影响人数' },
   { id: 3, icon: '/static/icons/clock.svg', value: '48h', label: '响应时间' }
 ])
@@ -173,24 +229,28 @@ const stats = ref([
 const photos = ref([
   {
     url: '/static/disaster.png',
-    location: '东京新宿区'
+    location: '成都市都江堰'
   }
 ])
 
 const timeline = ref([
   {
-    date: '2023-08-20 14:00',
+    date: '2025-06-06 14:00',
     title: '房屋修复',
     description: '主要干道恢复通车',
     images: ['/static/repair.png']
   }
 ])
 
+// 讨论区数据
+const discussions = ref([])
+
 // 用户提交相关
 const userReport = ref({
   content: '',
   images: [],
-  location: null
+  location: null,
+  time: null
 })
 
 const lastUpdate = computed(() => {
@@ -250,9 +310,81 @@ const addPhoto = () => {
   })
 }
 
-const submitReport = () => {
-  submissionPopup.value.close()
+const removeImage = (index) => {
+  userReport.value.images.splice(index, 1)
 }
+
+const previewDiscussionImage = (images, index) => {
+  uni.previewImage({
+    urls: images,
+    current: index
+  })
+}
+
+const formatTime = (date) => {
+  const now = new Date()
+  const diff = now - date
+  
+  if (diff < 60000) return '刚刚'
+  if (diff < 3600000) return `${Math.floor(diff / 60000)}分钟前`
+  if (diff < 86400000) return `${Math.floor(diff / 3600000)}小时前`
+  
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  
+  return `${year}-${month}-${day} ${hours}:${minutes}`
+}
+
+const submitReport = () => {
+  if (!userReport.value.content) {
+    uni.showToast({
+      title: '请输入内容',
+      icon: 'none'
+    })
+    return
+  }
+  
+  const newDiscussion = {
+    content: userReport.value.content,
+    images: [...userReport.value.images],
+    location: userReport.value.location?.address || '位置未知',
+    time: formatTime(new Date())
+  }
+  
+  // 添加到讨论列表
+  discussions.value.unshift(newDiscussion)
+  
+  // 保存到本地存储
+  const savedDiscussions = uni.getStorageSync('disaster-discussions') || []
+  savedDiscussions.unshift(newDiscussion)
+  uni.setStorageSync('disaster-discussions', savedDiscussions)
+  
+  // 重置表单
+  userReport.value = {
+    content: '',
+    images: [],
+    location: null,
+    time: null
+  }
+  
+  // 关闭弹窗
+  submissionPopup.value.close()
+  
+  // 显示提交成功提示
+  uni.showToast({
+    title: '提交成功',
+    icon: 'success'
+  })
+}
+
+// 初始化加载讨论数据
+onMounted(() => {
+  const savedDiscussions = uni.getStorageSync('disaster-discussions') || []
+  discussions.value = savedDiscussions
+})
 </script>
 
 <style lang="scss" scoped>
@@ -526,6 +658,142 @@ $color-text-secondary: #7f8c8d;
   }
 }
 
+/* 讨论区样式 */
+.discussion-section {
+  margin-top: 48rpx;
+  
+  .discussion-list {
+    padding: 0 32rpx;
+  }
+  
+  .discussion-item {
+    background: #fff;
+    border-radius: 16rpx;
+    padding: 24rpx;
+    margin-bottom: 24rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+    
+    .discussion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16rpx;
+      
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 12rpx;
+        
+        .avatar {
+          width: 64rpx;
+          height: 64rpx;
+          border-radius: 50%;
+        }
+        
+        .username {
+          font-size: 28rpx;
+          color: $color-text;
+          font-weight: 500;
+        }
+      }
+      
+      .time {
+        font-size: 24rpx;
+        color: $color-text-secondary;
+      }
+    }
+    
+    .discussion-content {
+      .text {
+        font-size: 28rpx;
+        color: $color-text;
+        line-height: 1.6;
+        margin-bottom: 16rpx;
+      }
+      
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12rpx;
+        margin-top: 16rpx;
+        
+        .discussion-image {
+          width: 100%;
+          height: 200rpx;
+          border-radius: 8rpx;
+          background: #f5f5f5;
+        }
+      }
+    }
+    
+    .discussion-footer {
+      margin-top: 16rpx;
+      padding-top: 16rpx;
+      border-top: 2rpx solid rgba(0,0,0,0.05);
+      
+      .location-info {
+        display: flex;
+        align-items: center;
+        gap: 8rpx;
+        
+        .location-icon {
+          width: $icon-sm;
+          height: $icon-sm;
+          opacity: 0.6;
+        }
+        
+        .location-text {
+          font-size: 24rpx;
+          color: $color-text-secondary;
+        }
+      }
+    }
+  }
+}
+
+/* 图片预览样式 */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+  
+  .preview-item {
+    position: relative;
+    width: 160rpx;
+    height: 160rpx;
+    
+    .preview-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 8rpx;
+    }
+    
+    .remove-btn {
+      position: absolute;
+      top: -16rpx;
+      right: -16rpx;
+      width: 40rpx;
+      height: 40rpx;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24rpx;
+    }
+  }
+}
+
+/* 提交按钮状态 */
+.submit-button {
+  &:disabled {
+    opacity: 0.5;
+    background: $color-text-secondary !important;
+  }
+}
+
 /* 悬浮按钮 */
 .submit-fab {
   position: fixed;
@@ -638,6 +906,22 @@ $color-text-secondary: #7f8c8d;
       background: #262626;
       color: #fff;
     }
+  }
+  
+  .discussion-item {
+    background: #2d2d2d !important;
+    
+    .text {
+      color: #fff !important;
+    }
+    
+    .discussion-footer {
+      border-color: rgba(255,255,255,0.1);
+    }
+  }
+  
+  .image-preview .preview-item .remove-btn {
+    background: rgba(255,255,255,0.2);
   }
 }
 

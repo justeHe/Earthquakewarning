@@ -10,6 +10,12 @@
       >
         {{ filter.label }}
       </button>
+      <button 
+        class="filter-btn"
+        @click="viewEarthquakeMap"
+      >
+        地震地图
+      </button>
     </view>
 
     <!-- 加载状态 -->
@@ -94,13 +100,13 @@ const lastFetchTime = ref(0)
 
 const goToTestPage = () => {
   uni.navigateTo({
-    url: '/pages/EmergencyAlert/EmergencyAlert' // 替换为你的测试页面路径
+    url: '/pages/EmergencyAlert/EmergencyAlert' 
   })
 }
 
 const goToShelter = () => {
   uni.navigateTo({
-    url: '/pages/Disaster-Report/Disaster-Report' // 替换为你的测试页面路径
+    url: '/pages/Disaster-Report/Disaster-Report' 
   })
 }
 
@@ -135,7 +141,7 @@ const loadData = async () => {
 
     // 处理API返回的对象格式数据
     let rawData = []
-    if (res.data && typeof res.data === 'object') {
+    if (res?.data?.constructor === Object) {
       // 将对象转换为数组
       rawData = Object.keys(res.data).map(key => {
         return {
@@ -166,23 +172,30 @@ const loadData = async () => {
 
 // 数据处理函数
 const processData = (data) => {
-  return data
+  const processedData = data
     .filter(item => item && item.time && item.magnitude) // 基础数据校验
     .sort((a, b) => new Date(b.time) - new Date(a.time)) // 按时间倒序
     .map(item => ({
       id: item.EventID || `eq-${item.time}-${item.magnitude}-${Math.random().toString(36).substr(2, 6)}`,
       type: item.type || 'reviewed',
-      magnitude: parseFloat(item.magnitude).toFixed(1),
+      magnitude: Number.parseFloat(item.magnitude).toFixed(1),
       title: formatLocation(item.location),
       status: item.type === 'automatic' ? '自动预警' : '正式测定',
       time: formatTime(item.time),
-      depth: item.depth ? `${parseFloat(item.depth).toFixed(1)}` : '未知',
+      depth: item.depth ? `${Number.parseFloat(item.depth).toFixed(1)}` : '未知',
       intensity: item.intensity || '未知',
       epicenter: item.location,
       description: `震源深度${item.depth || '未知'}千米，坐标: ${item.latitude || '未知'}, ${item.longitude || '未知'}`,
       severityClass: getSeverityClass(item.magnitude),
-      reportTime: item.ReportTime ? formatTime(item.ReportTime) : null
+      reportTime: item.ReportTime ? formatTime(item.ReportTime) : null,
+      latitude: Number.parseFloat(item.latitude) || 0,
+      longitude: Number.parseFloat(item.longitude) || 0
     }))
+
+  // 保存处理后的数据到本地存储
+  uni.setStorageSync('earthquakeHistory', processedData)
+  
+  return processedData
 }
 
 // 地点格式化
@@ -196,7 +209,7 @@ const formatLocation = (location) => {
 const formatTime = (timeString) => {
   try {
     const date = new Date(timeString)
-    return isNaN(date.getTime()) 
+    return Number.isNaN(date.getTime())
       ? timeString 
       : `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`
   } catch {
@@ -209,7 +222,7 @@ const pad = (n) => n.toString().padStart(2, '0')
 
 // 震级分类函数
 const getSeverityClass = (magnitude) => {
-  const value = parseFloat(magnitude) || 0
+  const value = Number.parseFloat(magnitude) || 0
   if (value < 3.5) return 'minor'
   if (value < 4.5) return 'light'
   if (value < 6) return 'moderate'
@@ -237,6 +250,17 @@ const retryLoading = () => {
   loadData()
 }
 
+// 查看地震地图
+const viewEarthquakeMap = () => {
+  if (historyItems.value.length > 0) {
+    uni.setStorageSync('earthquakeHistory', historyItems.value)
+  }
+
+  uni.navigateTo({
+    url: '/pages/EarthquakeMap/EarthquakeMap'
+  })
+}
+
 // 初始化加载数据
 onMounted(() => {
   loadData().then(() => {
@@ -244,15 +268,15 @@ onMounted(() => {
       historyItems.value.unshift({
         id: 'fake-test-001',
         type: 'automatic',
-        magnitude: '6.5',
-        title: '测试地震·东京湾',
+        magnitude: '4.0',
+        title: '测试地震·都江堰',
         status: '自动预警',
         time: formatTime(new Date().toISOString()),
-        depth: '10.0',
-        intensity: 'VII',
-        epicenter: '东京湾附近',
-        description: '测试数据：深度10km，震中坐标 35.0, 140.0',
-        severityClass: getSeverityClass(6.5),
+        depth: '5.0',
+        intensity: 'V',
+        epicenter: '"四川成都市都江堰”',
+        description: '测试数据：深度5km，震中坐标 30.88, 103.49',
+        severityClass: getSeverityClass(4.0),
         reportTime: formatTime(new Date().toISOString())
       })
     })
@@ -578,5 +602,14 @@ onMounted(() => {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+.map-btn {
+  background: linear-gradient(135deg, #3B82F6, #2563EB);
+  color: white !important;
+}
+
+.map-btn:active {
+  opacity: 0.9;
 }
 </style>

@@ -13,9 +13,23 @@
     >
       <!-- 地图图例 -->
       <cover-view class="map-legend">
-        <cover-view class="legend-item" v-for="item in markerTypes" :key="item.type">
-          <cover-image :src="item.icon" class="legend-icon"></cover-image>
-          <cover-text class="legend-text">{{ item.label }}</cover-text>
+        <cover-view class="legend-title">图例说明</cover-view>
+        <cover-view class="legend-list">
+          <cover-view 
+            class="legend-item" 
+            v-for="item in markerTypes" 
+            :key="item.type"
+          >
+            <cover-image 
+              :src="item.icon" 
+              class="legend-icon"
+              :style="{
+                width: '24rpx',
+                height: '24rpx'
+              }"
+            ></cover-image>
+            <cover-view class="legend-text">{{ item.label }}</cover-view>
+          </cover-view>
         </cover-view>
       </cover-view>
     </map>
@@ -382,33 +396,47 @@ const startNavigation = () => {
 
 .map-legend {
   position: absolute;
-  top: 20rpx;
-  right: 20rpx;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 16rpx;
-  border-radius: 12rpx;
+  top: 24rpx;
+  left: 24rpx;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  min-width: 180rpx;
+  z-index: 100;
+}
+
+.legend-title {
+  font-size: 24rpx;
+  color: #475569;
+  margin-bottom: 12rpx;
+  padding-bottom: 8rpx;
+  border-bottom: 2rpx solid rgba(0, 0, 0, 0.05);
+}
+
+.legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  margin-bottom: 8rpx;
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
+  padding: 4rpx 0;
+  height: 40rpx;
 }
 
 .legend-icon {
-  width: 24rpx;
-  height: 24rpx;
-  margin-right: 8rpx;
+  flex-shrink: 0;
+  margin-right: 12rpx;
+  display: block;
 }
 
 .legend-text {
   font-size: 24rpx;
-  color: #666;
+  color: #1e293b;
+  line-height: 32rpx;
 }
 
 .location-list {
@@ -818,6 +846,19 @@ const startNavigation = () => {
   
   .location-type {
     background: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  .map-legend {
+    background: rgba(38, 38, 38, 0.95);
+    
+    .legend-title {
+      color: #94a3b8;
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .legend-text {
+      color: #e5e7eb;
+    }
   }
 }
 </style> 

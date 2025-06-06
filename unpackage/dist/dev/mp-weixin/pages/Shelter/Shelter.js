@@ -1,10 +1,9 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 if (!Array) {
-  const _component_cover_text = common_vendor.resolveComponent("cover-text");
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_popup2 = common_vendor.resolveComponent("uni-popup");
-  (_component_cover_text + _easycom_uni_icons2 + _easycom_uni_popup2)();
+  (_easycom_uni_icons2 + _easycom_uni_popup2)();
 }
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 const _easycom_uni_popup = () => "../../uni_modules/uni-popup/components/uni-popup/uni-popup.js";
@@ -185,8 +184,7 @@ const _sfc_main = {
           return {
             a: item.icon,
             b: common_vendor.t(item.label),
-            c: "61b16127-0-" + i0,
-            d: item.type
+            c: item.type
           };
         }),
         b: currentLocation.value.latitude,
@@ -210,12 +208,12 @@ const _sfc_main = {
             b: item.typeBgColor,
             c: common_vendor.t(item.name),
             d: common_vendor.t(item.distance),
-            e: "61b16127-1-" + i0,
-            f: "61b16127-2-" + i0,
+            e: "61b16127-0-" + i0,
+            f: "61b16127-1-" + i0,
             g: common_vendor.t(item.capacity),
-            h: "61b16127-3-" + i0,
+            h: "61b16127-2-" + i0,
             i: common_vendor.t(item.supplies),
-            j: "61b16127-4-" + i0,
+            j: "61b16127-3-" + i0,
             k: common_vendor.t(item.contact),
             l: item.id,
             m: common_vendor.o(($event) => showLocationDetail(item), item.id)
@@ -288,7 +286,7 @@ const _sfc_main = {
         }),
         F: common_vendor.o(startNavigation)
       } : {}, {
-        G: common_vendor.sr(detailPopup, "61b16127-5", {
+        G: common_vendor.sr(detailPopup, "61b16127-4", {
           "k": "detailPopup"
         }),
         H: common_vendor.p({

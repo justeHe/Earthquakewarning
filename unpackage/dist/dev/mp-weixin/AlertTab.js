@@ -39,15 +39,15 @@ const _sfc_main = {
     const markers = common_vendor.ref([]);
     const myLatitude = common_vendor.ref(39.90469);
     const myLongitude = common_vendor.ref(116.40717);
-    function processRegeoData(data) {
+    const processRegeoData = (data) => {
       data.regeocodeData || {};
       return {
         name: data[0].name || "无",
         desc: data[0].desc || "无",
-        longitude: parseFloat(data[0].longitude) || 0,
-        latitude: parseFloat(data[0].latitude) || 0
+        longitude: Number.parseFloat(data[0].longitude) || 0,
+        latitude: Number.parseFloat(data[0].latitude) || 0
       };
-    }
+    };
     const getAddress = async () => {
       const myAmapFun = new amapFile.AMapWX({ key: mapKey });
       try {
@@ -64,10 +64,10 @@ const _sfc_main = {
           throw new Error("无效的逆地理编码响应格式");
         }
         const processedData = processRegeoData(data);
-        common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:136", "处理后的结构化数据:", processedData);
+        common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:147", "处理后的结构化数据:", processedData);
         return processedData;
       } catch (err) {
-        common_vendor.index.__f__("error", "at pages/AlertTab/AlertTab.vue:140", "地址解析错误:", err.message);
+        common_vendor.index.__f__("error", "at pages/AlertTab/AlertTab.vue:151", "地址解析错误:", err.message);
         throw err;
       }
     };
@@ -129,7 +129,7 @@ ${quake.warning}`,
       }
     };
     const moveToQuake = (quake) => {
-      common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:208", "点击地震卡片:", quake);
+      common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:219", "点击地震卡片:", quake);
       isViewingQuake.value = true;
       latitude.value = quake.latitude;
       longitude.value = quake.longitude;
@@ -141,7 +141,7 @@ ${quake.warning}`,
       common_vendor.wx$1.getLocation({
         type: "gcj02",
         success: (res) => {
-          common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:226", "获取位置成功:", res);
+          common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:237", "获取位置成功:", res);
           myLongitude.value = res.longitude;
           myLatitude.value = res.latitude;
           if (!isViewingQuake.value) {
@@ -149,10 +149,12 @@ ${quake.warning}`,
             latitude.value = res.latitude;
           }
           updateMarkers();
-          getAddress().then((data) => location.value = data.name).catch((err) => common_vendor.index.__f__("error", "at pages/AlertTab/AlertTab.vue:236", "获取地址失败:", err.message));
+          getAddress().then((data) => {
+            location.value = data.name;
+          }).catch((err) => common_vendor.index.__f__("error", "at pages/AlertTab/AlertTab.vue:249", "获取地址失败:", err.message));
         },
         fail: (err) => {
-          common_vendor.index.__f__("error", "at pages/AlertTab/AlertTab.vue:239", "获取位置失败:", err);
+          common_vendor.index.__f__("error", "at pages/AlertTab/AlertTab.vue:252", "获取位置失败:", err);
           common_vendor.index.showToast({
             title: "获取位置失败",
             icon: "none"
@@ -171,8 +173,29 @@ ${quake.warning}`,
       getWxLocationAsFallback();
     };
     const isViewingQuake = common_vendor.ref(false);
+    const goToEarthquakeMap = () => {
+      common_vendor.index.setStorageSync("earthquakeHistory", quakes.value);
+      common_vendor.index.navigateTo({
+        url: "/pages/EarthquakeMap/EarthquakeMap"
+      });
+    };
+    const goToSeismicData = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/SeismicData/SeismicData",
+        success: () => {
+          common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:295", "成功跳转到数据分析页面");
+        },
+        fail: (err) => {
+          common_vendor.index.__f__("error", "at pages/AlertTab/AlertTab.vue:298", "跳转失败:", err);
+          common_vendor.index.showToast({
+            title: "页面跳转失败",
+            icon: "none"
+          });
+        }
+      });
+    };
     common_vendor.onMounted(() => {
-      common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:267", "初始化地图组件");
+      common_vendor.index.__f__("log", "at pages/AlertTab/AlertTab.vue:308", "初始化地图组件");
       getWxLocationAsFallback();
       updateMarkers();
     });
@@ -191,7 +214,8 @@ ${quake.warning}`,
         k: markers.value,
         l: isUpdatingLocation.value ? 1 : "",
         m: common_vendor.o(backToMyLocation),
-        n: common_vendor.f(quakes.value, (quake, k0, i0) => {
+        n: common_vendor.o(goToSeismicData),
+        o: common_vendor.f(quakes.value, (quake, k0, i0) => {
           return {
             a: common_vendor.t(quake.magnitude),
             b: common_vendor.t(quake.time),
@@ -200,8 +224,9 @@ ${quake.warning}`,
             e: common_vendor.t(quake.warning),
             f: common_vendor.t(quake.latitude.toFixed(4)),
             g: common_vendor.t(quake.longitude.toFixed(4)),
-            h: quake.id,
-            i: common_vendor.o(($event) => moveToQuake(quake), quake.id)
+            h: common_vendor.o(goToEarthquakeMap, quake.id),
+            i: quake.id,
+            j: common_vendor.o(($event) => moveToQuake(quake), quake.id)
           };
         })
       };

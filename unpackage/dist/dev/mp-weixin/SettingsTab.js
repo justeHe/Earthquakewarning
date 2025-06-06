@@ -25,10 +25,30 @@ const _sfc_main = {
             iconColor: "#3B82F6"
           },
           {
+            name: "声音提醒",
+            icon: "sound",
+            type: "toggle",
+            value: true,
+            iconBg: "#F0FDF4",
+            iconColor: "#22C55E"
+          },
+          {
+            name: "声音大小",
+            icon: "sound",
+            type: "slider",
+            value: 80,
+            min: 0,
+            max: 100,
+            step: 1,
+            unit: "%",
+            iconBg: "#FEF3C7",
+            iconColor: "#F59E0B"
+          },
+          {
             name: "震动提醒",
             customIcon: "shake.svg",
             type: "toggle",
-            value: false,
+            value: true,
             iconBg: "#F0FDF4",
             iconColor: "#22C55E"
           },
@@ -67,14 +87,14 @@ const _sfc_main = {
             iconBg: "#F0FDF4",
             iconColor: "#22C55E"
           },
-          {
-            name: "深色模式",
-            icon: "eye",
-            type: "toggle",
-            value: false,
-            iconBg: "#FEF3C7",
-            iconColor: "#F59E0B"
-          },
+          // { 
+          //   name: '深色模式', 
+          //   icon: 'eye', 
+          //   type: 'toggle', 
+          //   value: false,
+          //   iconBg: '#FEF3C7',
+          //   iconColor: '#F59E0B'
+          // },
           {
             name: "位置信息",
             icon: "location",
@@ -123,6 +143,27 @@ const _sfc_main = {
         ]
       }
     ]);
+    const loadSettings = () => {
+      try {
+        for (const group of settingsGroups) {
+          for (const setting of group.items) {
+            const storedValue = common_vendor.index.getStorageSync(`setting_${setting.name}`);
+            if (storedValue !== "") {
+              setting.value = storedValue;
+            }
+          }
+        }
+      } catch (error) {
+        common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:249", "加载设置失败:", error);
+      }
+    };
+    const saveSettings = (settingName, value) => {
+      try {
+        common_vendor.index.setStorageSync(`setting_${settingName}`, value);
+      } catch (error) {
+        common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:258", "保存设置失败:", error);
+      }
+    };
     const handleSettingClick = (setting) => {
       if (setting.type === "text") {
         if (setting.options) {
@@ -151,35 +192,84 @@ const _sfc_main = {
       }
     };
     const handleToggle = (setting, event) => {
-      setting.value = event.detail.value;
-      if (setting.name === "深色模式") {
-        common_vendor.index.showToast({
-          title: event.detail.value ? "已开启深色模式" : "已关闭深色模式",
-          icon: "none"
-        });
-      } else if (setting.name === "位置信息") {
-        if (event.detail.value) {
-          common_vendor.index.getLocation({
-            type: "gcj02",
-            success: () => {
-              common_vendor.index.showToast({
-                title: "已开启位置权限",
-                icon: "success"
-              });
-            },
-            fail: () => {
-              setting.value = false;
-              common_vendor.index.showToast({
-                title: "请在系统设置中开启位置权限",
-                icon: "none"
-              });
-            }
+      const value = event.detail.value;
+      setting.value = value;
+      saveSettings(setting.name, value);
+      switch (setting.name) {
+        case "震动提醒":
+          common_vendor.index.setStorageSync("vibrationEnabled", value);
+          common_vendor.index.showToast({
+            title: value ? "已开启震动提醒" : "已关闭震动提醒",
+            icon: "none"
           });
-        }
+          break;
+        case "声音提醒":
+          common_vendor.index.setStorageSync("soundEnabled", value);
+          common_vendor.index.showToast({
+            title: value ? "已开启声音提醒" : "已关闭声音提醒",
+            icon: "none"
+          });
+          break;
+        case "预警通知":
+          common_vendor.index.setStorageSync("notificationEnabled", value);
+          if (value) {
+            common_vendor.index.requestSubscribeMessage({
+              tmplIds: ["earthquake_warning_template"],
+              // 替换为实际的模板ID
+              success: (res) => {
+                common_vendor.index.__f__("log", "at pages/SettingsTab/SettingsTab.vue:320", "订阅消息成功", res);
+              },
+              fail: (err) => {
+                common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:323", "订阅消息失败", err);
+                setting.value = false;
+                saveSettings(setting.name, false);
+              }
+            });
+          }
+          break;
+        case "位置信息":
+          if (value) {
+            common_vendor.index.getLocation({
+              type: "gcj02",
+              success: () => {
+                common_vendor.index.showToast({
+                  title: "已开启位置权限",
+                  icon: "success"
+                });
+                common_vendor.index.setStorageSync("locationEnabled", true);
+              },
+              fail: () => {
+                setting.value = false;
+                saveSettings(setting.name, false);
+                common_vendor.index.showToast({
+                  title: "请在系统设置中开启位置权限",
+                  icon: "none"
+                });
+              }
+            });
+          } else {
+            common_vendor.index.setStorageSync("locationEnabled", false);
+          }
+          break;
       }
     };
     const handleSliderChange = (setting, event) => {
-      setting.value = event.detail.value;
+      const value = event.detail.value;
+      setting.value = value;
+      saveSettings(setting.name, value);
+      switch (setting.name) {
+        case "震动强度":
+          common_vendor.index.setStorageSync("vibrationIntensity", value);
+          break;
+        case "声音大小": {
+          common_vendor.index.setStorageSync("soundVolume", value);
+          const bgAudio = common_vendor.index.getBackgroundAudioManager();
+          if (bgAudio) {
+            bgAudio.volume = value / 100;
+          }
+          break;
+        }
+      }
     };
     const handleClearCache = () => {
       common_vendor.index.showModal({
@@ -211,6 +301,9 @@ const _sfc_main = {
         });
       }, 1500);
     };
+    common_vendor.onMounted(() => {
+      loadSettings();
+    });
     return (_ctx, _cache) => {
       return {
         a: common_assets._imports_0$3,
@@ -246,13 +339,13 @@ const _sfc_main = {
                   color: "#999"
                 })
               } : setting.type === "slider" ? {
-                p: setting.value,
-                q: setting.min,
-                r: setting.max,
-                s: setting.step || 1,
-                t: common_vendor.o((e) => handleSliderChange(setting, e), index),
-                v: common_vendor.t(setting.value),
-                w: common_vendor.t(setting.unit || "%")
+                p: common_vendor.t(setting.value),
+                q: common_vendor.t(setting.unit || "%"),
+                r: setting.value,
+                s: setting.min,
+                t: setting.max,
+                v: setting.step || 1,
+                w: common_vendor.o((e) => handleSliderChange(setting, e), index)
               } : {}, {
                 k: setting.type === "text",
                 o: setting.type === "slider",

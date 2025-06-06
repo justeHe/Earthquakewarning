@@ -8,12 +8,13 @@
     "pages/HistoryTab/HistoryTab",
     "pages/GuideTab/GuideTab",
     "pages/SettingsTab/SettingsTab",
-    "Visualization/Visualization",
     "pages/Emergenciecenter/Emergenciecenter",
     "pages/Shelter/Shelter",
     "pages/Settings/About",
     "pages/Settings/Privacy",
-    "pages/Disaster-Report/Disaster-Report"
+    "pages/EarthquakeMap/EarthquakeMap",
+    "pages/Disaster-Report/Disaster-Report",
+    "pages/SeismicData/SeismicData"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -14,18 +14,19 @@ if (!Math) {
   "./pages/Shelter/Shelter.js";
   "./pages/Settings/About.js";
   "./pages/Settings/Privacy.js";
+  "./pages/EarthquakeMap/EarthquakeMap.js";
   "./pages/Disaster-Report/Disaster-Report.js";
+  "./pages/SeismicData/SeismicData.js";
 }
 const _sfc_main = {
-  onLaunch: function() {
-    common_vendor.index.__f__("warn", "at App.vue:4", "当前组件仅支持 uni_modules 目录结构 ，请升级 HBuilderX 到 3.1.0 版本以上！");
-    common_vendor.index.__f__("log", "at App.vue:5", "App Launch");
+  onLaunch: () => {
+    common_vendor.index.__f__("log", "at App.vue:4", "App Launch");
   },
-  onShow: function() {
-    common_vendor.index.__f__("log", "at App.vue:8", "App Show");
+  onShow: () => {
+    common_vendor.index.__f__("log", "at App.vue:7", "App Show");
   },
-  onHide: function() {
-    common_vendor.index.__f__("log", "at App.vue:11", "App Hide");
+  onHide: () => {
+    common_vendor.index.__f__("log", "at App.vue:10", "App Hide");
   }
 };
 function createApp() {

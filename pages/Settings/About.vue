@@ -52,13 +52,13 @@
           </view>
           <view class="contact-item">
             <text class="label">电子邮箱</text>
-            <text class="value">support@example.com</text>
+            <text class="value">justebe@163.com</text>
           </view>
         </view>
       </view>
 
       <view class="copyright">
-        <text>© 2024 地震预警. All rights reserved.</text>
+        <text>© 2025 地震预警. All rights reserved.</text>
       </view>
     </view>
   </view>

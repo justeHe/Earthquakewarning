@@ -1,0 +1,119 @@
+
+.back-btn.data-v-76cc4141 {
+  position: absolute;
+  top: 40px;
+  left: 16px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.back-icon.data-v-76cc4141 {
+  font-size: 20px;
+  color: #333;
+}
+.back-text.data-v-76cc4141 {
+  font-size: 14px;
+  color: #333;
+}
+.map-container.data-v-76cc4141 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.map-controls.data-v-76cc4141 {
+  position: absolute;
+  right: 20rpx;
+  bottom: 40rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+.control-btn.data-v-76cc4141, .location-btn.data-v-76cc4141 {
+  width: 80rpx;
+  height: 80rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+.control-btn text.data-v-76cc4141 {
+  font-size: 40rpx;
+  color: #333;
+}
+.location-btn.data-v-76cc4141 {
+  width: auto;
+  padding: 0 20rpx;
+}
+.quake-info.data-v-76cc4141 {
+  position: absolute;
+  bottom: 40rpx;
+  left: 20rpx;
+  right: 120rpx;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+.info-header.data-v-76cc4141 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+.title-section.data-v-76cc4141 {
+  flex: 1;
+  margin-right: 16rpx;
+}
+.magnitude.data-v-76cc4141 {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-right: 12rpx;
+}
+.title.data-v-76cc4141 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+.close.data-v-76cc4141 {
+  font-size: 40rpx;
+  color: #666;
+  padding: 0 10rpx;
+  line-height: 1;
+}
+.info-content.data-v-76cc4141 {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.info-row.data-v-76cc4141 {
+  display: flex;
+  align-items: center;
+}
+.label.data-v-76cc4141 {
+  color: #666;
+  width: 120rpx;
+  font-size: 24rpx;
+}
+.value.data-v-76cc4141 {
+  color: #333;
+  flex: 1;
+  font-size: 24rpx;
+}
+.value.automatic.data-v-76cc4141 {
+  color: #f97316;
+}
+.value.reviewed.data-v-76cc4141 {
+  color: #22c55e;
+}
+.coordinates.data-v-76cc4141 {
+  margin-top: 8rpx;
+  padding-top: 8rpx;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
