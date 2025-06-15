@@ -17,21 +17,21 @@ const _sfc_main = {
         id: 1,
         magnitude: "M4.2",
         time: "2025-05-15 08:23",
-        distance: "85km",
+        distance: "1525km",
         depth: "10km",
         warning: "无明显震感",
-        latitude: 30,
-        longitude: 120
+        latitude: 39.90469,
+        longitude: 116.40717
       },
       {
         id: 2,
-        magnitude: "M5.8",
+        magnitude: "M3.9",
         time: "2025-05-12 14:37",
-        distance: "120km",
-        depth: "15km",
+        distance: "64.82km",
+        depth: "5km",
         warning: "部分地区有震感",
-        latitude: 39.904,
-        longitude: 116.4071
+        latitude: 30.88,
+        longitude: 103.49
       }
     ]);
     const latitude = common_vendor.ref(39.90469);

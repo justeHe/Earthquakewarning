@@ -22,14 +22,6 @@ const _sfc_main = {
       showEmergencyAlert.value = false;
     }
     common_vendor.onMounted(() => {
-      setTimeout(() => {
-        if (Math.random() < 0.05) {
-          showEmergencyAlert.value = true;
-          setTimeout(() => {
-            showEmergencyAlert.value = false;
-          }, 1e4);
-        }
-      }, 3e3);
     });
     return (_ctx, _cache) => {
       return common_vendor.e({

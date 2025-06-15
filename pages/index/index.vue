@@ -41,15 +41,7 @@ function closeEmergencyAlert() {
 }
 
 // 模拟收到地震预警（5% 概率）并显示紧急警报，10秒后自动恢复
-onMounted(() => {
-  setTimeout(() => {
-    if (Math.random() < 0.05) {
-      showEmergencyAlert.value = true
-      setTimeout(() => {
-        showEmergencyAlert.value = false
-      }, 10000)
-    }
-  }, 3000)
+onMounted(() => { 
 })
 </script>
 

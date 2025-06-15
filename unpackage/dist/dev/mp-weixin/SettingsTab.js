@@ -109,6 +109,14 @@ const _sfc_main = {
         title: "其他",
         items: [
           {
+            name: "问卷报告",
+            icon: "help",
+            type: "text",
+            value: "提供反馈",
+            iconBg: "#F5F3FF",
+            iconColor: "#8B5CF6"
+          },
+          {
             name: "清除缓存",
             icon: "trash",
             type: "text",
@@ -154,14 +162,14 @@ const _sfc_main = {
           }
         }
       } catch (error) {
-        common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:249", "加载设置失败:", error);
+        common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:257", "加载设置失败:", error);
       }
     };
     const saveSettings = (settingName, value) => {
       try {
         common_vendor.index.setStorageSync(`setting_${settingName}`, value);
       } catch (error) {
-        common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:258", "保存设置失败:", error);
+        common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:266", "保存设置失败:", error);
       }
     };
     const handleSettingClick = (setting) => {
@@ -186,6 +194,9 @@ const _sfc_main = {
               break;
             case "关于我们":
               common_vendor.index.navigateTo({ url: "/pages/Settings/About" });
+              break;
+            case "问卷报告":
+              common_vendor.index.navigateTo({ url: "/pages/SurveyReport/SurveyReport" });
               break;
           }
         }
@@ -217,10 +228,10 @@ const _sfc_main = {
               tmplIds: ["earthquake_warning_template"],
               // 替换为实际的模板ID
               success: (res) => {
-                common_vendor.index.__f__("log", "at pages/SettingsTab/SettingsTab.vue:320", "订阅消息成功", res);
+                common_vendor.index.__f__("log", "at pages/SettingsTab/SettingsTab.vue:331", "订阅消息成功", res);
               },
               fail: (err) => {
-                common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:323", "订阅消息失败", err);
+                common_vendor.index.__f__("error", "at pages/SettingsTab/SettingsTab.vue:334", "订阅消息失败", err);
                 setting.value = false;
                 saveSettings(setting.name, false);
               }

@@ -274,7 +274,7 @@ onMounted(() => {
         time: formatTime(new Date().toISOString()),
         depth: '5.0',
         intensity: 'V',
-        epicenter: '"四川成都市都江堰”',
+        epicenter: '四川成都市都江堰',
         description: '测试数据：深度5km，震中坐标 30.88, 103.49',
         severityClass: getSeverityClass(4.0),
         reportTime: formatTime(new Date().toISOString())

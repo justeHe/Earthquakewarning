@@ -120,7 +120,7 @@ const props = defineProps({
   duration: { type: Number, default: 20 }, // 倒计时总时长
   magnitude: { type: Number, default: 4.0 }, // 震级
   depth: { type: Number, default: 10 }, // 深度
-  epicenter: { type: String, default:"四川省成都市" } // 震中
+  epicenter: { type: String, default:"四川省都江堰" } // 震中
 })
 
 const emit = defineEmits(['close', 'mute', 'unmute', 'show-guide'])

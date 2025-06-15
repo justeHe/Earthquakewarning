@@ -199,6 +199,14 @@ const settingsGroups = reactive([
     title: '其他',
     items: [
       { 
+        name: '问卷报告', 
+        icon: 'help', 
+        type: 'text', 
+        value: '提供反馈',
+        iconBg: '#F5F3FF',
+        iconColor: '#8B5CF6',
+      },
+      { 
         name: '清除缓存', 
         icon: 'trash', 
         type: 'text', 
@@ -282,6 +290,9 @@ const handleSettingClick = (setting) => {
           break
         case '关于我们':
           uni.navigateTo({ url: '/pages/Settings/About' })
+          break
+        case '问卷报告':
+          uni.navigateTo({ url: '/pages/SurveyReport/SurveyReport' })
           break
       }
     }

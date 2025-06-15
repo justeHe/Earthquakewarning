@@ -137,6 +137,13 @@
 		}
 	},
 	{
+		"path" : "pages/SurveyReport/SurveyReport",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	},
+	{
 		"path": "pages/SeismicData/SeismicData",
 		"style": {
 			"navigationBarTitleText": "地震数据分析",

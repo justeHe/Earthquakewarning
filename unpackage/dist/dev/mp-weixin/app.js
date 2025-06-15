@@ -16,6 +16,7 @@ if (!Math) {
   "./pages/Settings/Privacy.js";
   "./pages/EarthquakeMap/EarthquakeMap.js";
   "./pages/Disaster-Report/Disaster-Report.js";
+  "./pages/SurveyReport/SurveyReport.js";
   "./pages/SeismicData/SeismicData.js";
 }
 const _sfc_main = {

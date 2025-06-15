@@ -14,6 +14,7 @@
     "pages/Settings/Privacy",
     "pages/EarthquakeMap/EarthquakeMap",
     "pages/Disaster-Report/Disaster-Report",
+    "pages/SurveyReport/SurveyReport",
     "pages/SeismicData/SeismicData"
   ],
   "window": {

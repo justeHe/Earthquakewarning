@@ -95,10 +95,10 @@ const location = ref('正在获取位置...')
 const isRefreshing = ref(false)
 
 const quakes = ref([
-  { id: 1, magnitude: 'M4.2', time: '2025-05-15 08:23', distance: '85km', depth: '10km', warning: '无明显震感',latitude: 30,
-    longitude: 120},
-  { id: 2, magnitude: 'M5.8', time: '2025-05-12 14:37', distance: '120km', depth: '15km', warning: '部分地区有震感', latitude: 39.9040,
-    longitude: 116.4071 }
+  { id: 1, magnitude: 'M4.2', time: '2025-05-15 08:23', distance: '1525km', depth: '10km', warning: '无明显震感',latitude: 39.90469,
+    longitude: 116.40717},
+  { id: 2, magnitude: 'M3.9', time: '2025-05-12 14:37', distance: '64.82km', depth: '5km', warning: '部分地区有震感', latitude: 30.88,
+    longitude: 103.49 }
 ])
 
 

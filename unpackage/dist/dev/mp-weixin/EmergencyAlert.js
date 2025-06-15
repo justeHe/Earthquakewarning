@@ -9,7 +9,7 @@ const _sfc_main = {
     // 震级
     depth: { type: Number, default: 10 },
     // 深度
-    epicenter: { type: String, default: "四川省成都市" }
+    epicenter: { type: String, default: "四川省都江堰" }
     // 震中
   },
   emits: ["close", "mute", "unmute", "show-guide"],

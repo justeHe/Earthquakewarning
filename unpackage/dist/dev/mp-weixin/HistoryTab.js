@@ -162,7 +162,7 @@ const _sfc_main = {
           time: formatTime((/* @__PURE__ */ new Date()).toISOString()),
           depth: "5.0",
           intensity: "V",
-          epicenter: '"四川成都市都江堰”',
+          epicenter: "四川成都市都江堰",
           description: "测试数据：深度5km，震中坐标 30.88, 103.49",
           severityClass: getSeverityClass(4),
           reportTime: formatTime((/* @__PURE__ */ new Date()).toISOString())
